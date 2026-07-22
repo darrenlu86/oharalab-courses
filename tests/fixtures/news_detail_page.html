@@ -1,0 +1,35 @@
+<!--
+tests/fixtures/news_detail_page.html — 模擬鉅亨網文章頁渲染完成後的局部 HTML
+結構（2026-07-22 實測真實頁面後，抽取結構重寫，內容為教學用虛構文字，
+非真實新聞）。
+
+用來測試 parse_detail_page()：
+  - <time datetime="..."> 帶有 ISO8601 時間，驗證能正確抓到並正規化。
+  - #article-container 底下第一個 <p> 內容超過 300 字，驗證摘要會被截斷。
+  - 第二個 <p>（相關報導區塊）不應該被當成摘要，驗證只取第一個 <p>。
+-->
+<section class="t1el8oye">
+  <span class="bzubwch">台股</span>
+  <h1>示範標題：台積電法說會展望樂觀</h1>
+</section>
+<p class="alr4vq1">
+  <span class="signature">教學測試編譯</span>
+  <span class="separator"></span>
+  <time datetime="2026-07-22T13:00:03.000Z">2026-07-22 21:00</time>
+</p>
+<main id="article-container" class="c1tt5pk2">
+  <section>
+    <p>
+      這是教學用的虛構文章內文第一段，用來測試摘要截斷邏輯是否正確運作。
+      這段文字刻意寫得很長，重複幾次相似的句子，確保總長度超過三百個字元，
+      這樣才能驗證 parse_detail_page() 會把摘要截斷到 SUMMARY_MAX_LENGTH（300字）
+      而不是把整段文字都塞進 summary 欄位。這是教學用的虛構文章內文第一段，
+      用來測試摘要截斷邏輯是否正確運作。這段文字刻意寫得很長，重複幾次相似的句子，
+      確保總長度超過三百個字元，這樣才能驗證 parse_detail_page() 會把摘要截斷到
+      SUMMARY_MAX_LENGTH（300字）而不是把整段文字都塞進 summary 欄位。這是教學用的
+      虛構文章內文第一段，用來測試摘要截斷邏輯是否正確運作。這段文字刻意寫得很長，
+      重複幾次相似的句子，確保總長度超過三百個字元。
+    </p>
+    <p>相關報導：這段是第二段，不應該被抓進 summary。</p>
+  </section>
+</main>

@@ -1,0 +1,14 @@
+# 台積電股票分析教學專案 — 主要相依套件
+# 版本以 `venv/bin/pip show <套件>` 實際查詢結果為準（非 pip freeze 全量匯出，
+# 避免把作業系統/venv 底層的間接依賴也鎖進來，方便學員閱讀）。
+# 安裝方式：venv/bin/pip install -r requirements.txt
+
+requests==2.34.2          # 股價爬蟲：呼叫 TWSE 官方 JSON API
+beautifulsoup4==4.15.0    # 供應鏈爬蟲：解析 server-rendered HTML
+playwright==1.61.0        # 新聞爬蟲：渲染 React SPA 動態內容
+fastapi==0.139.2          # Dashboard 唯讀 API 框架
+uvicorn[standard]==0.51.0 # ASGI 伺服器，啟動 FastAPI
+supabase==2.31.0          # 雲端資料庫選項（本專案預設不啟用，程式碼保留）
+python-dotenv==1.2.2      # 讀取 .env 環境變數
+pytest==9.1.1             # 測試框架
+httpx==0.28.1             # FastAPI TestClient 依賴、非同步 HTTP 用戶端

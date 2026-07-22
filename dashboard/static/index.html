@@ -1,0 +1,89 @@
+<!doctype html>
+<!--
+  dashboard/static/index.html — 唯讀 Dashboard 的頁面骨架。
+
+  做什麼：
+      定義四個區塊的容器（版頭、統計摘要、股價圖表、新聞列表、供應鏈上下游），
+      實際內容全部由 main.js 呼叫 API 後動態填入——這個檔案本身不含任何
+      「假資料」或寫死的數字，避免 HTML 與 API 回傳的真實資料不一致。
+
+  為什麼用原生 HTML/CSS/JS（不用 React/Vue 等框架）：
+      教學專案的重點是讓學員看懂「fetch API → 拿到 JSON → 組出畫面」這條
+      最基本的資料流，框架會多一層打包、狀態管理等概念，先跳過。
+-->
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>台積電股票分析 Dashboard</title>
+    <link rel="stylesheet" href="/style.css" />
+    <!-- Chart.js：透過 CDN 載入，只用來畫兩張圖（收盤價折線圖／成交量長條圖）。 -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+  </head>
+  <body>
+    <div class="page">
+      <header class="page-header">
+        <div class="page-header-title">
+          <h1>台積電股票分析 Dashboard</h1>
+          <span class="symbol-badge">2330 台積電</span>
+        </div>
+        <p id="last-updated" class="last-updated">載入中…</p>
+      </header>
+
+      <!-- 統計摘要 stat tiles：四張卡片各顯示一個表的筆數，內容由 main.js 填入。 -->
+      <section class="section" aria-labelledby="summary-heading">
+        <h2 id="summary-heading" class="visually-hidden">資料庫統計摘要</h2>
+        <div class="stat-tiles" id="stat-tiles"></div>
+      </section>
+
+      <!-- 股價：收盤價折線圖與成交量長條圖分開兩張，各自單軸，不做雙軸疊圖。 -->
+      <section class="section" aria-labelledby="prices-heading">
+        <h2 id="prices-heading">股價走勢</h2>
+        <p id="prices-empty" class="empty-state hidden">
+          尚無股價資料，請先執行爬蟲（venv/bin/python scripts/run_all_crawlers.py）。
+        </p>
+        <div class="charts-grid" id="prices-charts">
+          <div class="chart-card">
+            <canvas id="price-chart" aria-label="收盤價折線圖" role="img"></canvas>
+          </div>
+          <div class="chart-card">
+            <canvas id="volume-chart" aria-label="成交量長條圖" role="img"></canvas>
+          </div>
+        </div>
+      </section>
+
+      <!-- 新聞：標題連結、來源、發布時間。 -->
+      <section class="section" aria-labelledby="news-heading">
+        <h2 id="news-heading">最新新聞</h2>
+        <p id="news-empty" class="empty-state hidden">
+          尚無新聞資料，請先執行爬蟲（venv/bin/python scripts/run_all_crawlers.py）。
+        </p>
+        <ul class="news-list" id="news-list"></ul>
+      </section>
+
+      <!-- 供應鏈：上游／中游／下游三欄 grid，每欄放公司卡片。 -->
+      <section class="section" aria-labelledby="supply-chain-heading">
+        <h2 id="supply-chain-heading">供應鏈上下游</h2>
+        <p id="supply-chain-empty" class="empty-state hidden">
+          尚無供應鏈資料，請先執行爬蟲（venv/bin/python scripts/run_all_crawlers.py）。
+        </p>
+        <div class="supply-chain-grid" id="supply-chain-grid">
+          <div class="supply-chain-column">
+            <h3 id="upstream-heading">上游</h3>
+            <div class="company-cards" id="upstream-cards"></div>
+          </div>
+          <div class="supply-chain-column">
+            <h3 id="midstream-heading">中游</h3>
+            <div class="company-cards" id="midstream-cards"></div>
+          </div>
+          <div class="supply-chain-column">
+            <h3 id="downstream-heading">下游</h3>
+            <div class="company-cards" id="downstream-cards"></div>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <script src="/main.js"></script>
+  </body>
+</html>
