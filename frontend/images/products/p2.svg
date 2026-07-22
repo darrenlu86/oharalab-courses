@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img">
+  <title>雞肉凍乾零食插圖</title>
+  <rect width="400" height="300" fill="#FBE0D3"/>
+
+  <!-- 夾鏈小零食袋 -->
+  <path d="M148 100 L252 100 L262 240 Q200 252 138 240 Z" fill="#FFFFFF"/>
+  <rect x="148" y="100" width="104" height="18" fill="#E8853D"/>
+  <circle cx="200" cy="109" r="4" fill="#FFF7EE"/>
+
+  <!-- 標籤圓形 -->
+  <circle cx="200" cy="176" r="46" fill="#FBEAE0" stroke="#E8853D" stroke-width="3"/>
+
+  <!-- 凍乾雞肉塊（不規則圓角方塊） -->
+  <g fill="#C96F2E">
+    <rect x="178" y="156" width="26" height="22" rx="6" transform="rotate(-8 178 156)"/>
+    <rect x="196" y="168" width="24" height="20" rx="6" transform="rotate(10 196 168)"/>
+  </g>
+
+  <!-- 從袋口掉出的零食塊 -->
+  <g fill="#E8853D">
+    <rect x="120" y="248" width="20" height="16" rx="5" transform="rotate(-12 120 248)"/>
+    <rect x="256" y="252" width="18" height="15" rx="5" transform="rotate(15 256 252)"/>
+  </g>
+
+  <!-- 貓咪剪影探頭 -->
+  <g fill="#3E2F25">
+    <path d="M300 240 a30 30 0 1 0 0.1 0 Z"/>
+    <path d="M278 220 L270 202 L290 214 Z"/>
+    <path d="M322 220 L330 202 L310 214 Z"/>
+  </g>
+  <ellipse cx="292" cy="236" rx="2.4" ry="3" fill="#FBE0D3"/>
+  <ellipse cx="308" cy="236" rx="2.4" ry="3" fill="#FBE0D3"/>
+</svg>

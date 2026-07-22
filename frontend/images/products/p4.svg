@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img">
+  <title>魚形貓草抱枕插圖</title>
+  <rect width="400" height="300" fill="#F3E7D8"/>
+
+  <!-- 魚形抱枕 -->
+  <g>
+    <ellipse cx="190" cy="160" rx="100" ry="62" fill="#F2A74E"/>
+    <path d="M280 160 L336 122 L336 198 Z" fill="#E8853D"/>
+    <!-- 縫線 -->
+    <path d="M110 160 H272" stroke="#C96F2E" stroke-width="2" stroke-dasharray="6 6"/>
+    <!-- 眼睛 -->
+    <circle cx="140" cy="148" r="6" fill="#3E2F25"/>
+    <circle cx="142" cy="146" r="2" fill="#FFF7EE"/>
+    <!-- 鰭 -->
+    <path d="M180 100 Q200 76 224 98 Q204 108 180 100 Z" fill="#C96F2E"/>
+    <path d="M180 220 Q200 244 224 222 Q204 212 180 220 Z" fill="#C96F2E"/>
+  </g>
+
+  <!-- 薄荷葉 -->
+  <g fill="#7BAE7F">
+    <path d="M96 96 C 76 84 76 62 96 50 C 116 62 116 84 96 96 Z"/>
+    <path d="M78 118 C 60 108 60 88 78 78 C 96 88 96 108 78 118 Z"/>
+  </g>
+  <path d="M96 96 V62M78 118 V86" stroke="#5E9463" stroke-width="1.6"/>
+
+  <!-- 貓掌爪印 -->
+  <g fill="#C96F2E" opacity="0.9">
+    <ellipse cx="300" cy="248" rx="8" ry="10"/>
+    <ellipse cx="286" cy="234" rx="4" ry="5.4"/>
+    <ellipse cx="300" cy="230" rx="4" ry="5.4"/>
+    <ellipse cx="314" cy="234" rx="4" ry="5.4"/>
+  </g>
+</svg>

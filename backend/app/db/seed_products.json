@@ -1,0 +1,92 @@
+[
+  {
+    "name": "鮭魚無穀貓糧 1.5kg",
+    "description": "主食選這款準沒錯,鮭魚是唯一的蛋白質來源,不添加穀物,腸胃比較敏感的貓咪也能安心吃。顆粒大小適中,幼貓成貓都好咀嚼消化。開封後記得放陰涼乾燥處,吃起來才新鮮。",
+    "price": 880,
+    "stock": 25,
+    "category": "food",
+    "image_url": "/images/products/p1.svg",
+    "is_active": true
+  },
+  {
+    "name": "雞肉凍乾零食 60g",
+    "description": "整塊雞肉直接凍乾,鎖住原本的香氣跟營養,貓咪聞到味道就會衝過來討。無額外調味,單純雞肉的天然鹹香,當訓練獎勵或幫忙加菜都合適。開封後密封冷藏,新鮮度更持久。",
+    "price": 320,
+    "stock": 40,
+    "category": "snack",
+    "image_url": "/images/products/p2.svg",
+    "is_active": true
+  },
+  {
+    "name": "逗貓棒羽毛三件組",
+    "description": "三種羽毛頭可以替換,一支逗貓棒滿足貓咪不同的狩獵心情。桿身有彈性,甩動起來的節奏最容易勾起興趣。每天陪牠玩個十分鐘,運動量夠了脾氣也會跟著穩定下來。",
+    "price": 260,
+    "stock": 18,
+    "category": "toy",
+    "image_url": "/images/products/p3.svg",
+    "is_active": true
+  },
+  {
+    "name": "貓草薄荷魚抱枕",
+    "description": "裡面塞了貓草跟薄荷,貓咪抱著咬著都很興奮,後腳踢肚子的力道超療癒。魚的造型剛好適合前爪環抱,尺寸不會太大也不會太小。現貨不多,喜歡就別猶豫了。",
+    "price": 390,
+    "stock": 3,
+    "category": "toy",
+    "image_url": "/images/products/p4.svg",
+    "is_active": true
+  },
+  {
+    "name": "礦砂 10L 低粉塵",
+    "description": "結塊力強,鏟起來完整不散開,家裡不會整片砂塵飛揚。低粉塵配方對呼吸道比較敏感的貓咪跟人都友善,除臭效果也做得不錯,一天鏟一次就能維持乾爽。",
+    "price": 450,
+    "stock": 30,
+    "category": "litter",
+    "image_url": "/images/products/p5.svg",
+    "is_active": true
+  },
+  {
+    "name": "雙層貓抓板波浪款",
+    "description": "波浪瓦楞紙雙層加厚,耐抓耐磨,不會抓兩下就整個塌陷。躺著抓、站著抓都合貓咪的意,順便磨爪保養指甲,紙屑掉落也在可以接受的範圍內,好整理。",
+    "price": 690,
+    "stock": 12,
+    "category": "supplies",
+    "image_url": "/images/products/p6.svg",
+    "is_active": true
+  },
+  {
+    "name": "陶瓷斜口貓碗",
+    "description": "斜口設計讓貓咪吃東西時脖子不用一直往下低,對關節跟消化道都比較舒服。陶瓷材質好清洗也不易藏污納垢,底部加了防滑墊,吃飯時碗不會滿地跑。",
+    "price": 480,
+    "stock": 22,
+    "category": "supplies",
+    "image_url": "/images/products/p7.svg",
+    "is_active": true
+  },
+  {
+    "name": "深睡窩洞穴款 M 號",
+    "description": "洞穴造型有安全感,怕生或容易緊張的貓咪特別愛躲進去睡。內裡鋪了厚實絨毛,冬天保暖夏天也不悶熱,M 號適合大多數家貓,睡起來蜷成一團剛剛好。",
+    "price": 1280,
+    "stock": 8,
+    "category": "supplies",
+    "image_url": "/images/products/p8.svg",
+    "is_active": true
+  },
+  {
+    "name": "鮪魚肉泥條 4 入",
+    "description": "鮪魚肉泥打得細滑,擠一條出來貓咪秒衝過來報到,配藥或哄不吃飯的貓咪都好用。這款太搶手,目前補貨中,想吃到記得先收藏起來等上架通知。",
+    "price": 120,
+    "stock": 0,
+    "category": "snack",
+    "image_url": "/images/products/p9.svg",
+    "is_active": true
+  },
+  {
+    "name": "智能滾動逗貓球",
+    "description": "碰到障礙物會自動轉向,滾動軌跡不規律,貓咪追起來像在抓真的獵物一樣起勁。內建 LED 燈光,晚上玩也看得到,USB 充電,不用一直買電池換來換去。",
+    "price": 560,
+    "stock": 15,
+    "category": "toy",
+    "image_url": "/images/products/p10.svg",
+    "is_active": true
+  }
+]

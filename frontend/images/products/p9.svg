@@ -1,0 +1,29 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img">
+  <title>鮪魚肉泥條插圖</title>
+  <rect width="400" height="300" fill="#FBE0D3"/>
+
+  <!-- 肉泥條（軟管狀） -->
+  <g>
+    <path d="M150 90 Q140 90 140 106 L140 210 Q140 232 200 232 Q260 232 260 210 L260 106 Q260 90 250 90 Z" fill="#F2A74E"/>
+    <path d="M150 90 L160 66 L240 66 L250 90 Z" fill="#C96F2E"/>
+    <rect x="182" y="54" width="36" height="14" rx="5" fill="#C96F2E"/>
+  </g>
+
+  <!-- 條紋標籤 -->
+  <rect x="152" y="128" width="96" height="60" rx="10" fill="#FFF7EE"/>
+  <g fill="#E8853D">
+    <ellipse cx="188" cy="158" rx="20" ry="11"/>
+    <path d="M208 158 L224 148 L224 168 Z"/>
+  </g>
+
+  <!-- 擠出的泥狀滴 -->
+  <path d="M200 232 Q192 250 200 260 Q208 250 200 232 Z" fill="#F2A74E"/>
+
+  <!-- 貓咪舔嘴 -->
+  <g fill="#3E2F25">
+    <path d="M300 250 a24 24 0 1 0 0.1 0 Z"/>
+  </g>
+  <ellipse cx="292" cy="248" rx="2.2" ry="2.8" fill="#FBE0D3"/>
+  <ellipse cx="308" cy="248" rx="2.2" ry="2.8" fill="#FBE0D3"/>
+  <path d="M296 258 q4 6 8 0" stroke="#F2A74E" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+</svg>

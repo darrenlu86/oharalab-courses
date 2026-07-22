@@ -1,0 +1,70 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>登入 / 註冊｜喵喵商店 MeowShop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <div id="navbar-root"></div>
+
+  <main>
+    <div class="auth-wrapper">
+      <div class="auth-card">
+        <!-- 登入/註冊同頁雙 tab，切換只是換顯示的表單，不換頁 -->
+        <div class="auth-tabs">
+          <button type="button" class="auth-tab active" data-tab="login">登入</button>
+          <button type="button" class="auth-tab" data-tab="register">註冊新帳號</button>
+        </div>
+
+        <div class="auth-panel active" id="panel-login">
+          <div class="form-error" id="login-error"></div>
+          <form id="login-form">
+            <div class="form-group">
+              <label class="form-label" for="login-email">Email</label>
+              <input type="email" id="login-email" class="form-input" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="login-password">密碼</label>
+              <input type="password" id="login-password" class="form-input" required autocomplete="current-password">
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" id="login-submit">登入</button>
+          </form>
+        </div>
+
+        <div class="auth-panel" id="panel-register">
+          <div class="form-error" id="register-error"></div>
+          <form id="register-form">
+            <div class="form-group">
+              <label class="form-label" for="register-name">暱稱</label>
+              <input type="text" id="register-name" class="form-input" required autocomplete="name">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="register-email">Email</label>
+              <input type="email" id="register-email" class="form-input" required autocomplete="email">
+            </div>
+            <div class="form-group">
+              <label class="form-label" for="register-password">密碼</label>
+              <input type="password" id="register-password" class="form-input" required minlength="8" autocomplete="new-password">
+              <p class="form-hint">至少 8 個字元</p>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block" id="register-submit">建立帳號</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/pages/login.js"></script>
+</body>
+</html>
