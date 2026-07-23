@@ -576,7 +576,7 @@ sequenceDiagram
     DB-->>Repo: 各表筆數＋最新日期
     Repo-->>API: dict
     API-->>Web: JSON
-    Web->>Web: 渲染統計摘要 stat tiles、版頭「最後更新時間」
+    Web->>Web: 渲染頁尾「資料狀態」小字、版頭「最後更新時間」
 
     par 平行載入其餘三個區塊（互不影響）
         Web->>API: GET /api/prices?symbol=2330&days=90
@@ -586,7 +586,7 @@ sequenceDiagram
         Repo-->>API: list[dict]
         API->>API: 取最後 90 筆（rows[-days:]）
         API-->>Web: JSON（prices）
-        Web->>Web: Chart.js 畫收盤價折線圖／成交量長條圖（分開兩張，單軸）
+        Web->>Web: 左欄畫收盤價折線圖／成交量長條圖（分開兩張、上下堆疊，單軸），並用最後一筆算出版頭最新收盤價與漲跌幅
     and
         Web->>API: GET /api/news?symbol=2330&limit=30
         API->>Repo: get_news(symbol, limit)
@@ -594,7 +594,7 @@ sequenceDiagram
         DB-->>Repo: rows
         Repo-->>API: list[dict]
         API-->>Web: JSON（news）
-        Web->>Web: 渲染新聞列表（標題連結／來源／時間）
+        Web->>Web: 右欄渲染新聞列表（標題連結／來源／時間）
     and
         Web->>API: GET /api/supply-chain?symbol=2330
         API->>Repo: get_supply_chain(symbol)
@@ -603,7 +603,7 @@ sequenceDiagram
         Repo-->>API: list[dict]
         API->>API: 依 relation 分成 upstream／midstream／downstream 三組
         API-->>Web: JSON（三組公司清單）
-        Web->>Web: 渲染上／中／下游三欄公司卡片
+        Web->>Web: 整寬渲染上／中／下游三欄公司卡片
     end
 ```
 
@@ -729,8 +729,8 @@ venv/bin/python scripts/run_all_crawlers.py --months 3 --news-limit 20
 - `tests/test_api.py` 全數通過（用 FastAPI `TestClient` 搭配暫存測試資料庫，透過
   `app.dependency_overrides` 換掉 `get_repo`，不動到正式的 `data/tsmc.db`）。
 - 執行 `venv/bin/uvicorn dashboard.app:app --port 8300`，用瀏覽器打開
-  `http://localhost:8300/`，確認四個區塊（統計摘要、股價圖表、新聞列表、供應鏈三欄卡片）都能正確
-  渲染，瀏覽器主控台（Console）沒有 JavaScript 錯誤。
+  `http://localhost:8300/`，確認版頭股價摘要、股價圖表、新聞列表、供應鏈三欄卡片、頁尾資料狀態都能
+  正確渲染，瀏覽器主控台（Console）沒有 JavaScript 錯誤。
 - 直接用瀏覽器打 API 端點（如 `http://localhost:8300/api/summary`）觀察回傳的原始 JSON，確認格式與
   `db/base.py` 定義的介面一致。
 

@@ -8,6 +8,10 @@
       系列色（categorical slot 1 blue #2a78d6、slot 2 orange #eb6834）只用在
       Chart.js 的圖表資料上（main.js），不用在一般文字或 UI 元件——
       文字一律用文字色（primary/secondary/muted），不借用系列色。
+      漲跌色（--price-up / --price-down）取自同一份 palette.md 的「fixed
+      status palette」（critical #d03b3b／delta 好轉文字 #006300），兩者在
+      light surface 上的文字對比都 ≥4.5:1，可以直接當文字色用，不是憑感覺
+      挑的紅綠。
 
   為什麼用 CSS 自訂屬性（--role 命名）而不是散落各處寫死 hex：
       顏色只在 :root 定義一次，之後所有規則都引用「角色」（如
@@ -28,6 +32,14 @@
   --border-hairline: rgba(11, 11, 11, 0.1);
   --series-price: #2a78d6;
   --series-volume: #eb6834;
+
+  /* 在地化知識點：台股慣例「紅漲綠跌」，跟美股／國際慣例的「綠漲紅跌」
+     剛好相反——這不是隨意選色，是台灣股市特有的視覺慣例（漲=紅、跌=綠），
+     照搬美股配色會讓台灣投資人直覺理解相反。--price-up 用在「今日收盤價
+     高於前一交易日」，--price-down 用在「低於前一交易日」，色值取自
+     palette.md 既有的 status/delta 色階（不是新配的色）。 */
+  --price-up: #d03b3b;
+  --price-down: #006300;
 }
 
 * {
@@ -43,9 +55,9 @@ body {
 }
 
 .page {
-  max-width: 1100px;
+  max-width: 1280px;
   margin: 0 auto;
-  padding: 32px 20px 64px;
+  padding: 24px 20px 48px;
 }
 
 .visually-hidden {
@@ -58,12 +70,12 @@ body {
 }
 
 /* ---------------------------------------------------------------------- */
-/* 版頭 */
+/* 版頭：股票代號 → 股價摘要（大字）→ 最後更新時間，由上而下依重要性排序 */
 /* ---------------------------------------------------------------------- */
 .page-header {
   border-bottom: 1px solid var(--border-hairline);
-  padding-bottom: 20px;
-  margin-bottom: 28px;
+  padding-bottom: 16px;
+  margin-bottom: 20px;
 }
 
 .page-header-title {
@@ -74,8 +86,10 @@ body {
 }
 
 .page-header h1 {
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   margin: 0;
+  color: var(--text-secondary);
+  font-weight: 600;
 }
 
 .symbol-badge {
@@ -86,22 +100,59 @@ body {
   padding: 2px 12px;
 }
 
+/* 股價摘要：投資人打開頁面第一眼要看到的資訊，字級明顯大於其他文字。 */
+.price-summary {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 8px;
+}
+
+.price-value {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.price-change {
+  font-size: 1.05rem;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 漲跌色：見 :root 的 --price-up / --price-down 註解（台股紅漲綠跌）。
+   平盤（flat）不代表「壞消息」，用中性的次要文字色，不借用漲跌色。 */
+.price-change.up {
+  color: var(--price-up);
+}
+
+.price-change.down {
+  color: var(--price-down);
+}
+
+.price-change.flat {
+  color: var(--text-secondary);
+}
+
 .last-updated {
-  margin: 8px 0 0;
+  margin: 6px 0 0;
   color: var(--text-muted);
-  font-size: 0.9rem;
+  font-size: 0.85rem;
 }
 
 /* ---------------------------------------------------------------------- */
 /* 共用區塊樣式 */
 /* ---------------------------------------------------------------------- */
 .section {
-  margin-bottom: 40px;
+  margin-bottom: 24px;
 }
 
 .section h2 {
   font-size: 1.1rem;
-  margin: 0 0 16px;
+  margin: 0 0 12px;
   color: var(--text-primary);
 }
 
@@ -114,45 +165,90 @@ body {
   font-size: 0.9rem;
 }
 
+/* 為什麼這裡要用 !important（本檔案唯一一處）：
+   `.hidden` 是一個到處共用的「切換顯示/隱藏」工具 class，會被加在
+   `.charts-grid`、`.supply-chain-grid` 等本身就設了 `display` 的元素上
+   （例如 `class="charts-grid hidden"`）。CSS 特異度（specificity）只看
+   selector 本身，跟 class 加的順序無關；`.charts-grid { display: flex }`
+   等規則定義在檔案後面，特異度跟 `.hidden` 一樣（都是單一 class），後
+   定義的規則會贏，導致空資料時「隱藏」失敗、看起來像半個空白方塊卡在
+   頁面上（這是改版前就存在的既有 bug，這次順手一併修掉，不是新引入
+   的問題）。`.hidden` 的語意就是「不管原本設了什麼 display，都要藏起
+   來」，所以刻意用 !important 保證它一定贏，比起把這條規則搬到檔案最
+   後面（順序一變就可能又被下一個新增的規則蓋掉）更穩定、更不容易日後
+   又踩到同樣的坑。 */
 .hidden {
-  display: none;
+  display: none !important;
 }
 
 /* ---------------------------------------------------------------------- */
-/* stat tiles：清單型內容用 grid 排版，不左右交錯 */
-/* ---------------------------------------------------------------------- */
-.stat-tiles {
+/* 主要內容：CSS Grid 兩欄——左欄（走勢圖＋成交量圖）2fr、右欄（新聞）1fr，
+   供應鏈整寬放在下一列。
+
+   為什麼右欄用固定 max-height（見 #news-list）而不是靠 grid 的
+   align-items: stretch 自動拉伸對齊左欄：
+       試過 stretch 後發現行不通——新聞筆數多時（教學專案常見 20 筆），
+       右欄在「未設高度限制」狀態下的自然內容高度遠超過左欄兩張圖表，
+       CSS Grid 決定列高時會先用兩欄「未拉伸前」的自然高度取最大值，
+       再統一拉伸兩欄到那個高度——結果變成兩欄都被撐到新聞欄的完整
+       高度，新聞欄內反而完全不會出現捲軸（因為它自己已經長到能塞下
+       全部內容），跟「右欄超出部分要捲動」的需求剛好相反。改用兩欄
+       各自依內容決定高度（align-items: start，也是 grid 的常見替代
+       寫法），右欄再用明確的 max-height 頂住，才是穩定作法——與本檔
+       案供應鏈欄位 .company-cards 的 max-height + overflow-y 是同一
+       套模式，不是另外發明一種寫法。 */
+.dashboard-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  gap: 16px;
+  grid-template-columns: 2fr 1fr;
+  grid-template-areas:
+    "charts news"
+    "supply supply";
+  gap: 20px;
+  align-items: start;
+
+  /* 定義在這裡（而不是 .charts-grid 上）是因為 CSS 自訂屬性只會往子孫
+     元素傳遞，不會傳給同層的兄弟元素——.charts-grid 跟 .news-list 是
+     .dashboard-grid 底下平行的兩支，要共用同一個數字來源，變數就得定義
+     在兩者共同的父層。 */
+  --chart-card-height: 240px;
 }
 
-.stat-tile {
-  background: var(--surface);
-  border: 1px solid var(--border-hairline);
-  border-radius: 10px;
-  padding: 16px 18px;
+.charts-column {
+  grid-area: charts;
 }
 
-.stat-tile .stat-value {
-  font-size: 1.8rem;
-  font-weight: 600;
-  font-variant-numeric: tabular-nums;
-  color: var(--text-primary);
+.news-column {
+  grid-area: news;
 }
 
-.stat-tile .stat-label {
-  margin-top: 4px;
-  font-size: 0.85rem;
-  color: var(--text-secondary);
+.supply-section {
+  grid-area: supply;
+}
+
+@media (max-width: 900px) {
+  /* 窄螢幕退化為單欄堆疊：走勢圖／成交量圖 → 新聞 → 供應鏈，依序往下讀。
+     新聞欄不再需要對齊左欄視覺高度（各自成一列），拿掉內部捲動限制，
+     讓整頁自然往下捲動即可，符合手機閱讀習慣。 */
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      "charts"
+      "news"
+      "supply";
+  }
+
+  #news-list {
+    max-height: none;
+    overflow-y: visible;
+  }
 }
 
 /* ---------------------------------------------------------------------- */
-/* 股價圖表：收盤價折線圖與成交量長條圖分開兩張，並排顯示（單軸原則） */
-/* ---------------------------------------------------------------------- */
+/* 股價圖表：收盤價折線圖與成交量長條圖上下堆疊在左欄，各自單軸（不畫
+   雙軸疊圖），高度縮小到能與右欄新聞列表在 900px 視窗高度內同框顯示。 */
 .charts-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+  display: flex;
+  flex-direction: column;
   gap: 16px;
 }
 
@@ -160,14 +256,19 @@ body {
   background: var(--surface);
   border: 1px solid var(--border-hairline);
   border-radius: 10px;
-  padding: 16px;
-  height: 320px;
+  padding: 14px;
+  height: var(--chart-card-height);
   position: relative;
 }
 
 /* ---------------------------------------------------------------------- */
-/* 新聞列表 */
-/* ---------------------------------------------------------------------- */
+/* 新聞列表：桌面寬度時限制最大高度，跟左欄（兩張圖表＋標題）的視覺高度
+   大致對齊，超出的部分改用欄內捲動（overflow-y: auto），只露出開頭幾則
+   新聞——這是這次改版的核心目標：1280～1440px 寬度不捲動就能同時看到
+   走勢圖、成交量圖、新聞列表開頭。算式：兩張圖表（--chart-card-height，
+   定義在 .dashboard-grid）＋兩者間 16px 間距＋標題（約 40px），用 calc()
+   算而不是另外寫死一個數字，是為了跟左欄實際高度共用同一個來源，之後
+   調整圖表高度時這裡會自動跟著換算，不用兩處分別改、改一邊漏改一邊。 */
 .news-list {
   list-style: none;
   margin: 0;
@@ -175,6 +276,8 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
+  max-height: calc(var(--chart-card-height) * 2 + 16px + 40px);
+  overflow-y: auto;
 }
 
 .news-item {
@@ -182,6 +285,7 @@ body {
   border: 1px solid var(--border-hairline);
   border-radius: 10px;
   padding: 14px 16px;
+  flex-shrink: 0;
 }
 
 .news-item a {
@@ -201,7 +305,7 @@ body {
 }
 
 /* ---------------------------------------------------------------------- */
-/* 供應鏈：上／中／下游三欄 grid */
+/* 供應鏈：上／中／下游三欄 grid（整寬，維持原本設計） */
 /* ---------------------------------------------------------------------- */
 .supply-chain-grid {
   display: grid;
@@ -248,4 +352,20 @@ body {
   margin-top: 4px;
   font-size: 0.8rem;
   color: var(--text-muted);
+}
+
+/* ---------------------------------------------------------------------- */
+/* 頁尾「資料狀態」：原本佔版面主位的四張統計卡片，改版後降級成一行小字
+   （教學專案仍要能看到各表筆數，但不該搶投資人版面的視覺主位）。 */
+.page-footer {
+  margin-top: 32px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border-hairline);
+}
+
+.data-status {
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 0.8rem;
+  font-variant-numeric: tabular-nums;
 }

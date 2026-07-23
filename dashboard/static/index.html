@@ -3,13 +3,23 @@
   dashboard/static/index.html — 唯讀 Dashboard 的頁面骨架。
 
   做什麼：
-      定義四個區塊的容器（版頭、統計摘要、股價圖表、新聞列表、供應鏈上下游），
-      實際內容全部由 main.js 呼叫 API 後動態填入——這個檔案本身不含任何
-      「假資料」或寫死的數字，避免 HTML 與 API 回傳的真實資料不一致。
+      定義版頭（含股價資訊）、股價走勢圖表、新聞列表、供應鏈上下游、
+      頁尾資料狀態五個區塊的容器，實際內容全部由 main.js 呼叫 API 後動態
+      填入——這個檔案本身不含任何「假資料」或寫死的數字，避免 HTML 與
+      API 回傳的真實資料不一致。
 
   為什麼用原生 HTML/CSS/JS（不用 React/Vue 等框架）：
       教學專案的重點是讓學員看懂「fetch API → 拿到 JSON → 組出畫面」這條
       最基本的資料流，框架會多一層打包、狀態管理等概念，先跳過。
+
+  版面設計（2026-07 改版：從「資料展示頁」改成「股票評價網」風格）：
+      版頭把「最新收盤價＋漲跌」放在最顯眼的位置（投資人打開頁面第一眼要
+      看到的就是股價，不是一堆統計卡片）；主要內容改成 CSS Grid 兩欄——
+      左欄（走勢圖＋成交量圖，上下堆疊）、右欄（新聞列表，可獨立捲動），
+      讓 1280～1440px 桌面寬度不用捲動就能同時看到走勢圖、成交量圖、新聞
+      開頭；供應鏈維持整寬三欄，放在主要內容下方；原本佔版面主位的四張
+      統計卡片，降級成頁尾一行小字（教學用途仍要看得到筆數，但不該搶走
+      投資人視覺注意力）。細節見 style.css 對應區塊的註解。
 -->
 <html lang="zh-Hant">
   <head>
@@ -27,61 +37,75 @@
           <h1>台積電股票分析 Dashboard</h1>
           <span class="symbol-badge">2330 台積電</span>
         </div>
+
+        <!-- 股價摘要：最新收盤價（大字）＋漲跌額／漲跌幅，投資人打開頁面
+             第一眼要看到的資訊。數值來自 /api/prices 最後一筆的 close/change
+             欄位，由 main.js 的 renderHeaderPrice() 計算與上色。 -->
+        <div class="price-summary">
+          <span id="price-value" class="price-value">載入中…</span>
+          <span id="price-change" class="price-change flat"></span>
+        </div>
+
         <p id="last-updated" class="last-updated">載入中…</p>
       </header>
 
-      <!-- 統計摘要 stat tiles：四張卡片各顯示一個表的筆數，內容由 main.js 填入。 -->
-      <section class="section" aria-labelledby="summary-heading">
-        <h2 id="summary-heading" class="visually-hidden">資料庫統計摘要</h2>
-        <div class="stat-tiles" id="stat-tiles"></div>
-      </section>
+      <div class="dashboard-grid">
+        <!-- 左欄：股價走勢（折線）與成交量（長條）上下堆疊，各自單軸，
+             不畫雙軸疊圖。 -->
+        <section class="section charts-column" aria-labelledby="prices-heading">
+          <h2 id="prices-heading">股價走勢</h2>
+          <p id="prices-empty" class="empty-state hidden">
+            尚無股價資料，請先執行爬蟲（venv/bin/python scripts/run_all_crawlers.py）。
+          </p>
+          <div class="charts-grid" id="prices-charts">
+            <div class="chart-card">
+              <canvas id="price-chart" aria-label="收盤價折線圖" role="img"></canvas>
+            </div>
+            <div class="chart-card">
+              <canvas id="volume-chart" aria-label="成交量長條圖" role="img"></canvas>
+            </div>
+          </div>
+        </section>
 
-      <!-- 股價：收盤價折線圖與成交量長條圖分開兩張，各自單軸，不做雙軸疊圖。 -->
-      <section class="section" aria-labelledby="prices-heading">
-        <h2 id="prices-heading">股價走勢</h2>
-        <p id="prices-empty" class="empty-state hidden">
-          尚無股價資料，請先執行爬蟲（venv/bin/python scripts/run_all_crawlers.py）。
-        </p>
-        <div class="charts-grid" id="prices-charts">
-          <div class="chart-card">
-            <canvas id="price-chart" aria-label="收盤價折線圖" role="img"></canvas>
-          </div>
-          <div class="chart-card">
-            <canvas id="volume-chart" aria-label="成交量長條圖" role="img"></canvas>
-          </div>
-        </div>
-      </section>
+        <!-- 右欄：新聞列表，整條右欄；內容過長時欄內自行捲動（見
+             style.css 的 #news-list 規則），標題連結、來源、發布時間。 -->
+        <section class="section news-column" aria-labelledby="news-heading">
+          <h2 id="news-heading">最新新聞</h2>
+          <p id="news-empty" class="empty-state hidden">
+            尚無新聞資料，請先執行爬蟲（venv/bin/python scripts/run_all_crawlers.py）。
+          </p>
+          <ul class="news-list" id="news-list"></ul>
+        </section>
 
-      <!-- 新聞：標題連結、來源、發布時間。 -->
-      <section class="section" aria-labelledby="news-heading">
-        <h2 id="news-heading">最新新聞</h2>
-        <p id="news-empty" class="empty-state hidden">
-          尚無新聞資料，請先執行爬蟲（venv/bin/python scripts/run_all_crawlers.py）。
-        </p>
-        <ul class="news-list" id="news-list"></ul>
-      </section>
+        <!-- 供應鏈：整寬，上游／中游／下游三欄 grid，每欄放公司卡片，
+             欄內超出高度自行捲動（維持原本設計，只是換到主要內容下方）。 -->
+        <section class="section supply-section" aria-labelledby="supply-chain-heading">
+          <h2 id="supply-chain-heading">供應鏈上下游</h2>
+          <p id="supply-chain-empty" class="empty-state hidden">
+            尚無供應鏈資料，請先執行爬蟲（venv/bin/python scripts/run_all_crawlers.py）。
+          </p>
+          <div class="supply-chain-grid" id="supply-chain-grid">
+            <div class="supply-chain-column">
+              <h3 id="upstream-heading">上游</h3>
+              <div class="company-cards" id="upstream-cards"></div>
+            </div>
+            <div class="supply-chain-column">
+              <h3 id="midstream-heading">中游</h3>
+              <div class="company-cards" id="midstream-cards"></div>
+            </div>
+            <div class="supply-chain-column">
+              <h3 id="downstream-heading">下游</h3>
+              <div class="company-cards" id="downstream-cards"></div>
+            </div>
+          </div>
+        </section>
+      </div>
 
-      <!-- 供應鏈：上游／中游／下游三欄 grid，每欄放公司卡片。 -->
-      <section class="section" aria-labelledby="supply-chain-heading">
-        <h2 id="supply-chain-heading">供應鏈上下游</h2>
-        <p id="supply-chain-empty" class="empty-state hidden">
-          尚無供應鏈資料，請先執行爬蟲（venv/bin/python scripts/run_all_crawlers.py）。
-        </p>
-        <div class="supply-chain-grid" id="supply-chain-grid">
-          <div class="supply-chain-column">
-            <h3 id="upstream-heading">上游</h3>
-            <div class="company-cards" id="upstream-cards"></div>
-          </div>
-          <div class="supply-chain-column">
-            <h3 id="midstream-heading">中游</h3>
-            <div class="company-cards" id="midstream-cards"></div>
-          </div>
-          <div class="supply-chain-column">
-            <h3 id="downstream-heading">下游</h3>
-            <div class="company-cards" id="downstream-cards"></div>
-          </div>
-        </div>
-      </section>
+      <!-- 頁尾「資料狀態」：原本佔版面主位的四張統計卡片降級成一行小字，
+           教學專案仍要能看到各表筆數，但不該搶投資人版面的視覺主位。 -->
+      <footer class="page-footer">
+        <p id="data-status" class="data-status">載入中…</p>
+      </footer>
     </div>
 
     <script src="/main.js"></script>

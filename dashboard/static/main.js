@@ -5,13 +5,13 @@
  *
  * 做什麼：
  *     頁面載入後平行呼叫四支 API（/api/summary、/api/prices、/api/news、
- *     /api/supply-chain），把回傳的 JSON 組成畫面：統計摘要 stat tiles、
- *     收盤價折線圖、成交量長條圖、新聞列表、供應鏈三欄卡片。
+ *     /api/supply-chain），把回傳的 JSON 組成畫面：版頭股價摘要、收盤價
+ *     折線圖、成交量長條圖、新聞列表、供應鏈三欄卡片、頁尾資料狀態。
  *
  * 為什麼四支 API 各自獨立 try/catch、互不影響：
  *     其中一支 API 失敗（例如新聞爬蟲還沒跑過、/api/news 回傳空清單，
  *     或極端情況下網路請求失敗），不該讓整頁「當機」看不到任何東西——
- *     股價圖表、統計摘要應該照樣顯示。這是唯讀 Dashboard 的基本原則：
+ *     股價圖表、資料狀態應該照樣顯示。這是唯讀 Dashboard 的基本原則：
  *     單一資料來源的問題，不該擴散成整頁故障。
  *
  * 注意（初學者常見誤解）：
@@ -58,39 +58,39 @@ async function fetchJSON(url) {
 }
 
 // ---------------------------------------------------------------------------
-// 統計摘要 stat tiles ＋ 版頭最後更新時間
+// 頁尾「資料狀態」小字 ＋ 版頭最後更新時間
+//
+// 為什麼原本的四張統計卡片改成頁尾一行文字：這是「股票評價網」改版的一部分
+// ——投資人打開頁面第一眼該看到的是股價（見版頭 .price-summary），各表筆數
+// 只是教學專案想留給學員確認「爬蟲到底寫進了多少筆」的除錯資訊，不該佔用
+// 版面最顯眼的位置，所以降級成頁尾小字。
 // ---------------------------------------------------------------------------
 async function loadSummary() {
   const lastUpdatedEl = document.getElementById("last-updated");
   try {
     const summary = await fetchJSON("/api/summary");
-    renderStatTiles(summary);
+    renderDataStatus(summary);
     lastUpdatedEl.textContent = formatLastUpdated(summary);
   } catch (err) {
     console.error("讀取 /api/summary 失敗：", err);
     lastUpdatedEl.textContent = "讀取失敗，請確認 Dashboard 伺服器是否正常。";
+    const statusEl = document.getElementById("data-status");
+    statusEl.textContent = "資料狀態讀取失敗，請確認 Dashboard 伺服器是否正常。";
   }
 }
 
-function renderStatTiles(summary) {
-  const tiles = [
-    { label: "股票筆數", value: summary.stocks },
-    { label: "每日股價筆數", value: summary.daily_prices },
-    { label: "新聞筆數", value: summary.news },
-    { label: "供應鏈公司筆數", value: summary.supply_chain },
+/** 把 /api/summary 的四個表筆數組成頁尾一行文字，例如：
+ *  「資料狀態：股票 1 筆・每日股價 56 筆・新聞 12 筆・供應鏈公司 84 筆」。
+ *  純數字組字串，不含任何來自外部資料源的自由文字，不需要 escapeHtml。 */
+function renderDataStatus(summary) {
+  const parts = [
+    `股票 ${summary.stocks} 筆`,
+    `每日股價 ${summary.daily_prices} 筆`,
+    `新聞 ${summary.news} 筆`,
+    `供應鏈公司 ${summary.supply_chain} 筆`,
   ];
-
-  const container = document.getElementById("stat-tiles");
-  container.innerHTML = "";
-  for (const tile of tiles) {
-    const div = document.createElement("div");
-    div.className = "stat-tile";
-    div.innerHTML = `
-      <div class="stat-value">${tile.value}</div>
-      <div class="stat-label">${tile.label}</div>
-    `;
-    container.appendChild(div);
-  }
+  const statusEl = document.getElementById("data-status");
+  statusEl.textContent = `資料狀態：${parts.join("・")}`;
 }
 
 /**
@@ -165,7 +165,9 @@ function formatLastUpdated(summary) {
 }
 
 // ---------------------------------------------------------------------------
-// 股價：收盤價折線圖 ＋ 成交量長條圖（分開兩張，單軸，不做雙軸疊圖）
+// 股價：版頭股價摘要 ＋ 收盤價折線圖 ＋ 成交量長條圖（分開兩張，單軸，
+// 不做雙軸疊圖）。版頭摘要與兩張圖表共用同一支 /api/prices 回應，不另外
+// 多發一次請求——最新收盤價與漲跌幅本來就在這份資料的最後一筆裡。
 // ---------------------------------------------------------------------------
 async function loadPrices() {
   const emptyEl = document.getElementById("prices-empty");
@@ -177,6 +179,7 @@ async function loadPrices() {
     if (prices.length === 0) {
       emptyEl.classList.remove("hidden");
       chartsEl.classList.add("hidden");
+      renderHeaderPriceEmpty();
       return;
     }
 
@@ -184,12 +187,80 @@ async function loadPrices() {
     chartsEl.classList.remove("hidden");
     renderPriceChart(prices);
     renderVolumeChart(prices);
+    // /api/prices 已依 trade_date 遞增排序（見 app.py 的 docstring），
+    // 所以陣列最後一筆就是「最新一個交易日」，不需要再自己找最大日期。
+    renderHeaderPrice(prices[prices.length - 1]);
   } catch (err) {
     console.error("讀取 /api/prices 失敗：", err);
     emptyEl.textContent = "股價資料讀取失敗，請確認 Dashboard 伺服器是否正常。";
     emptyEl.classList.remove("hidden");
     chartsEl.classList.add("hidden");
+    renderHeaderPriceEmpty();
   }
+}
+
+/**
+ * 把「最新一筆股價」渲染成版頭的大字收盤價＋漲跌額／漲跌幅。
+ *
+ * 漲跌幅怎麼算：daily_prices.change 欄位的定義是「今日收盤 - 前一交易日
+ * 收盤」（見 db/schema_sqlite.sql），所以反推 `close - change` 就能還原
+ * 前一交易日收盤價，不需要 API 另外回傳這個欄位或前端自己再查一次前一筆。
+ *
+ * 顏色（台股慣例「紅漲綠跌」）：見 style.css :root 的 --price-up /
+ * --price-down 註解，這裡只負責依漲跌方向套用對應的 class，不在 JS 裡
+ * 寫死顏色值——顏色定義集中在 CSS，才不會出現「JS 一份色碼、CSS 一份
+ * 色碼」兩邊各自維護、日後改色漏改一邊的情況。
+ */
+function renderHeaderPrice(latestRow) {
+  const priceValueEl = document.getElementById("price-value");
+  const priceChangeEl = document.getElementById("price-change");
+
+  const close = latestRow.close;
+  if (typeof close !== "number" || Number.isNaN(close)) {
+    renderHeaderPriceEmpty();
+    return;
+  }
+  priceValueEl.textContent = formatPrice(close);
+
+  const change = latestRow.change;
+  if (typeof change !== "number" || Number.isNaN(change)) {
+    // 理論上只有資料庫裡「這檔股票的第一筆交易日」會沒有 change（沒有
+    // 前一天可比較），教學專案資料量小，這種情況不算罕見，用中性文字
+    // 說明，而不是顯示 "NaN%" 這種對使用者沒意義的訊息。
+    priceChangeEl.textContent = "無前一交易日資料可比較";
+    priceChangeEl.className = "price-change flat";
+    return;
+  }
+
+  const previousClose = close - change;
+  const percent = previousClose !== 0 ? (change / previousClose) * 100 : null;
+
+  const direction = change > 0 ? "up" : change < 0 ? "down" : "flat";
+  const arrow = change > 0 ? "▲" : change < 0 ? "▼" : "－";
+  const sign = change > 0 ? "+" : ""; // 負值 toFixed() 本身就會帶「-」，不用再補
+  const changeText = `${sign}${change.toFixed(2)}`;
+  const percentText =
+    percent === null ? "" : ` (${percent > 0 ? "+" : ""}${percent.toFixed(2)}%)`;
+
+  priceChangeEl.textContent = `${arrow} ${changeText}${percentText}`;
+  priceChangeEl.className = `price-change ${direction}`;
+}
+
+/** 股價資料讀取失敗或資料庫尚無資料時，版頭改顯示中性的預留文字，
+ *  不留下「載入中…」卡住不動、或空白看起來像壞掉的畫面。 */
+function renderHeaderPriceEmpty() {
+  document.getElementById("price-value").textContent = "－－";
+  const priceChangeEl = document.getElementById("price-change");
+  priceChangeEl.textContent = "尚無股價資料";
+  priceChangeEl.className = "price-change flat";
+}
+
+/** 股價數字統一格式化成固定兩位小數（如 1015.00），方便跟其他數字對齊。 */
+function formatPrice(value) {
+  return value.toLocaleString("zh-TW", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  });
 }
 
 function renderPriceChart(prices) {
