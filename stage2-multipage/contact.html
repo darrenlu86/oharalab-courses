@@ -1,0 +1,110 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>聯絡我們｜BrewGo 沖沖咖啡</title>
+<meta name="description" content="聯絡 BrewGo 沖沖咖啡：商品諮詢、門市合作提案與網站問題回報，附前端驗證的示範聯絡表單。">
+<link rel="canonical" href="https://www.brewgo-demo.example/contact.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BrewGo 沖沖咖啡">
+<meta property="og:title" content="聯絡我們｜BrewGo 沖沖咖啡">
+<meta property="og:description" content="商品諮詢、門市合作提案與網站問題回報。">
+<meta property="og:image" content="images/og-image.svg">
+<meta property="og:url" content="https://www.brewgo-demo.example/contact.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="stylesheet" href="css/ui-kit.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+
+<main id="main-content">
+  <div class="container page-header">
+    <ol class="breadcrumb">
+      <li><a href="index.html">首頁</a></li>
+      <li aria-current="page">聯絡我們</li>
+    </ol>
+    <h1>聯絡我們</h1>
+    <p>有商品諮詢、門市合作提案，或是發現網站有問題，都歡迎透過下方表單留言。</p>
+  </div>
+
+  <div class="container">
+    <div class="contact-layout">
+
+      <div>
+        <div class="form-success" role="status" aria-live="polite" tabindex="-1">
+          感謝你的訊息！這是教學示範表單，實際上不會寄出或儲存任何資料。
+        </div>
+
+        <form id="contact-form" novalidate>
+          <div class="form-field">
+            <label for="field-name">姓名</label>
+            <input type="text" id="field-name" name="name" autocomplete="name">
+            <span class="error-message" role="alert"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="field-email">Email</label>
+            <input type="email" id="field-email" name="email" autocomplete="email">
+            <span class="hint">我們只會用這個信箱回覆你的問題（本站為教學示範，不會真的寄出回覆）。</span>
+            <span class="error-message" role="alert"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="field-topic">聯絡主題</label>
+            <select id="field-topic" name="topic">
+              <option value="">請選擇主題</option>
+              <option value="product">商品諮詢</option>
+              <option value="partnership">門市合作提案</option>
+              <option value="feedback">網站問題回報</option>
+              <option value="other">其他</option>
+            </select>
+            <span class="error-message" role="alert"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="field-message">訊息內容</label>
+            <textarea id="field-message" name="message" rows="5"></textarea>
+            <span class="hint">請至少填寫 10 個字，方便我們理解你的問題。</span>
+            <span class="error-message" role="alert"></span>
+          </div>
+
+          <div class="form-field">
+            <div class="form-check">
+              <input type="checkbox" id="field-agree" name="agree">
+              <label for="field-agree" style="font-weight:400;">
+                我同意 BrewGo 依上述用途處理我填寫的聯絡資訊（本站為教學示範，不會真的處理或保存這些資料）。
+              </label>
+            </div>
+            <span class="error-message" role="alert"></span>
+          </div>
+
+          <button type="submit" class="btn btn-primary">送出訊息</button>
+        </form>
+      </div>
+
+      <div class="contact-info">
+        <div class="card card-body">
+          <h3>其他聯絡方式</h3>
+          <dl>
+            <dt>客服信箱</dt>
+            <dd>hello@brewgo-demo.example</dd>
+            <dt>服務時間</dt>
+            <dd>週二至週日 10:00-19:00</dd>
+            <dt>門市查詢</dt>
+            <dd><a href="stores.html">查看兩間門市地址與電話</a></dd>
+          </dl>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</main>
+
+<div data-include="partials/footer.html"></div>
+<script src="js/include.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

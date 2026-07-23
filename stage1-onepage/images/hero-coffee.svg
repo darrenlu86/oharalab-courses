@@ -1,0 +1,38 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 360" role="img">
+  <title>手沖咖啡示意插圖</title>
+  <rect width="480" height="360" fill="#faf6f0"/>
+
+  <!-- 桌面 -->
+  <rect x="0" y="290" width="480" height="70" fill="#e7dccb"/>
+
+  <!-- 細口壺 -->
+  <path d="M270 90 q40 0 44 40 l6 90 q2 20 -18 20 h-70 q-20 0 -18 -20 l6 -90 q4 -40 44 -40 Z" fill="#6b4a33"/>
+  <path d="M240 88 h68 v14 h-68 Z" fill="#4b3324"/>
+  <path d="M314 110 q30 6 30 34 q0 26 -26 32" fill="none" stroke="#4b3324" stroke-width="8" stroke-linecap="round"/>
+  <!-- 壺嘴出水 -->
+  <path d="M230 118 q-14 4 -18 16" fill="none" stroke="#4b3324" stroke-width="8" stroke-linecap="round"/>
+  <path d="M214 138 q2 18 4 34" fill="none" stroke="#9c5b2b" stroke-width="3" stroke-linecap="round" opacity="0.85"/>
+
+  <!-- 濾杯 -->
+  <path d="M170 232 h96 l-14 46 h-68 Z" fill="#ffffff" stroke="#4b3324" stroke-width="4"/>
+  <path d="M182 244 h72" stroke="#e3c9a6" stroke-width="3"/>
+  <path d="M186 256 h64" stroke="#e3c9a6" stroke-width="3"/>
+
+  <!-- 玻璃壺 -->
+  <path d="M186 278 h64 v40 q0 14 -14 14 h-36 q-14 0 -14 -14 Z" fill="#ffffff" stroke="#4b3324" stroke-width="4" fill-opacity="0.5"/>
+  <rect x="192" y="300" width="52" height="18" fill="#4b3324" opacity="0.55"/>
+
+  <!-- 熱氣 -->
+  <path d="M198 224 q-6 -12 0 -22" fill="none" stroke="#9c5b2b" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M212 224 q-6 -12 0 -22" fill="none" stroke="#9c5b2b" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M226 224 q-6 -12 0 -22" fill="none" stroke="#9c5b2b" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- 咖啡豆散落 -->
+  <g fill="#4b3324">
+    <ellipse cx="360" cy="300" rx="9" ry="6" transform="rotate(20 360 300)"/>
+    <ellipse cx="382" cy="312" rx="9" ry="6" transform="rotate(-10 382 312)"/>
+    <ellipse cx="404" cy="298" rx="9" ry="6" transform="rotate(35 404 298)"/>
+    <ellipse cx="90" cy="308" rx="9" ry="6" transform="rotate(-25 90 308)"/>
+    <ellipse cx="66" cy="292" rx="9" ry="6" transform="rotate(15 66 292)"/>
+  </g>
+</svg>

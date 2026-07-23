@@ -1,0 +1,640 @@
+/* ==========================================================================
+   沖沖咖啡 BrewGo — 開幕倒數活動頁 樣式表
+   撰寫原則：mobile-first（先寫手機版，再用 min-width 疊加桌機版樣式）。
+   為什麼 mobile-first 而不是 desktop-first：手機瀏覽人數通常比桌機多，
+   mobile-first 讓「沒被斷點覆蓋到」的裝置（最舊、最小的手機）也拿到堪用的
+   基本樣式，而不是拿到「桌機樣式硬擠進小螢幕」的慘況。
+   ========================================================================== */
+
+/* ---------- 1. 設計 tokens（CSS 自訂屬性）---------- */
+:root {
+  /* 色彩：全部通過 WCAG AA 4.5:1（見 docs/DESIGN.md 對照表，實測數據） */
+  --color-bg: #faf6f0;
+  --color-surface: #ffffff;
+  --color-text: #2b211a;
+  --color-primary: #4b3324;
+  --color-primary-light: #6b4a33;
+  --color-accent: #9c5b2b;
+  --color-success: #2e6b40;
+  --color-error: #a13333;
+
+  /* 字體：system font stack，不載外部字型檔，離線環境也能正常顯示中文 */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC",
+    "Microsoft JhengHei", sans-serif;
+
+  /* 間距（8px 基準的倍數，方便對齊） */
+  --space-1: 0.5rem;
+  --space-2: 1rem;
+  --space-3: 1.5rem;
+  --space-4: 2rem;
+  --space-5: 3rem;
+  --space-6: 4rem;
+
+  /* 版面 */
+  --container-max: 1120px;
+  --radius: 12px;
+  --shadow-card: 0 4px 16px rgba(43, 33, 26, 0.08);
+}
+
+/* ---------- 2. Reset / 基礎設定 ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background-color: var(--color-bg);
+  line-height: 1.7;
+  /* rem 以瀏覽器預設 16px 為基準，讓使用者調整瀏覽器字級設定時整站跟著縮放 */
+  font-size: 1rem;
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+h1,
+h2,
+h3 {
+  color: var(--color-primary);
+  line-height: 1.3;
+  margin: 0 0 var(--space-2);
+}
+
+h1 {
+  font-size: 2rem;
+}
+
+h2 {
+  font-size: 1.5rem;
+}
+
+h3 {
+  font-size: 1.15rem;
+}
+
+p {
+  margin: 0 0 var(--space-2);
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
+
+/* 鍵盤可視焦點樣式：a11y 硬性要求。不要用 outline: none 移除瀏覽器預設，
+   而是統一換成品牌色、粗一點的外框，滑鼠使用者看不太到、鍵盤使用者一目瞭然。 */
+:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-2);
+}
+
+.section {
+  padding: var(--space-5) 0;
+}
+
+.section-bg-surface {
+  background-color: var(--color-surface);
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: var(--space-1);
+}
+
+.section-subtitle {
+  text-align: center;
+  color: var(--color-primary-light);
+  margin-bottom: var(--space-4);
+}
+
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--space-1) var(--space-2);
+  z-index: 100;
+}
+
+.skip-link:focus {
+  left: var(--space-1);
+  top: var(--space-1);
+}
+
+/* 按鈕 */
+.btn {
+  display: inline-block;
+  border: none;
+  border-radius: 999px;
+  padding: 0.85rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  text-decoration: none;
+  font-family: inherit;
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.btn-primary:hover,
+.btn-primary:focus-visible {
+  background-color: var(--color-primary-light);
+}
+
+/* ---------- 3. 導覽列 ---------- */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--color-surface);
+  box-shadow: 0 1px 0 rgba(43, 33, 26, 0.08);
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--space-1) var(--space-2);
+}
+
+.navbar__logo img {
+  height: 40px;
+  width: auto;
+}
+
+/* 漢堡按鈕：預設只在行動版顯示（三斷點見第 8 節） */
+.navbar__toggle {
+  display: inline-flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: none;
+  border: 1px solid var(--color-primary);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.navbar__toggle-bar {
+  display: block;
+  height: 2px;
+  width: 22px;
+  margin: 0 auto;
+  background-color: var(--color-primary);
+}
+
+.navbar__menu {
+  list-style: none;
+  width: 100%;
+  /* 預設收合：直接用 display:none / display:block 切換。
+     這裡刻意不做展開動畫（例如 max-height 過場效果）——動畫可以之後當延伸挑戰
+     自己加，但教學的第一版程式碼優先求「一眼看懂邏輯」，不疊加額外的複雜度。 */
+  display: none;
+  background-color: var(--color-surface);
+}
+
+.navbar__menu.is-open {
+  display: block;
+}
+
+.navbar__menu li {
+  border-top: 1px solid #eee0d0;
+}
+
+.navbar__menu a {
+  display: block;
+  padding: var(--space-2);
+  color: var(--color-text);
+  text-decoration: none;
+  font-weight: 600;
+}
+
+.navbar__menu a:hover,
+.navbar__menu a:focus-visible {
+  color: var(--color-accent);
+}
+
+/* ---------- 4. Hero ---------- */
+.hero {
+  padding: var(--space-5) 0;
+}
+
+.hero .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  align-items: center;
+  text-align: center;
+}
+
+.hero__tagline {
+  font-size: 1.15rem;
+  color: var(--color-primary-light);
+}
+
+.hero__image {
+  width: 100%;
+  max-width: 420px;
+}
+
+.countdown {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-1);
+  max-width: 420px;
+  margin: var(--space-3) auto;
+}
+
+.countdown__unit {
+  background-color: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-2) 0.25rem;
+  text-align: center;
+}
+
+.countdown__value {
+  display: block;
+  font-size: 1.75rem;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-primary);
+}
+
+.countdown__label {
+  font-size: 0.8rem;
+  color: var(--color-primary-light);
+}
+
+.countdown--done {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-success);
+  background-color: var(--color-surface);
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  box-shadow: var(--shadow-card);
+}
+
+/* ---------- 5. 品牌故事 ---------- */
+.story__grid {
+  display: grid;
+  gap: var(--space-4);
+  align-items: center;
+}
+
+.story__image {
+  max-width: 320px;
+  margin: 0 auto;
+}
+
+/* ---------- 6. 招牌選品（grid，不做左右交錯）---------- */
+.product-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-3);
+}
+
+.product-card {
+  background-color: var(--color-surface);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card img {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+}
+
+.product-card__body {
+  padding: var(--space-2);
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  flex: 1;
+}
+
+.product-card__name {
+  font-weight: 700;
+  font-size: 1rem;
+  margin: 0;
+}
+
+.product-card__price {
+  color: var(--color-accent);
+  font-weight: 700;
+}
+
+.product-card__desc {
+  color: var(--color-primary-light);
+  font-size: 0.9rem;
+  margin: 0;
+  flex: 1;
+}
+
+.product-note {
+  text-align: center;
+  color: var(--color-primary-light);
+  font-size: 0.9rem;
+  margin-top: var(--space-3);
+}
+
+/* ---------- 7. 開幕優惠 ---------- */
+.promo-grid {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.promo-card {
+  background-color: var(--color-primary);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: var(--space-3);
+  text-align: center;
+}
+
+.promo-card__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.4rem;
+}
+
+.promo-card__desc {
+  margin: 0;
+  opacity: 0.92;
+}
+
+/* ---------- 8. FAQ Accordion ---------- */
+.accordion {
+  max-width: 720px;
+  margin: 0 auto;
+}
+
+.accordion__item {
+  border-bottom: 1px solid #e7dccb;
+}
+
+.accordion__trigger {
+  width: 100%;
+  text-align: left;
+  background: none;
+  border: none;
+  padding: var(--space-2) 0;
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--color-primary);
+  cursor: pointer;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: var(--space-2);
+  font-family: inherit;
+}
+
+.accordion__icon {
+  flex-shrink: 0;
+  transition: transform 0.2s ease;
+}
+
+/* aria-expanded="true" 時把 + 圖示轉 45 度變成 x，用屬性選擇器直接對應
+   JS 設的 aria 狀態，避免另外維護一個重複的 class。 */
+.accordion__trigger[aria-expanded="true"] .accordion__icon {
+  transform: rotate(45deg);
+}
+
+/* 面板的顯示/隱藏直接交給 HTML 的 hidden 屬性（瀏覽器內建，等同 display:none），
+   JS 只需要切換 panel.hidden 這一個布林值，不用自己維護 class 或計算高度。 */
+.accordion__panel p {
+  padding: 0 0 var(--space-2);
+  color: var(--color-primary-light);
+  margin: 0;
+}
+
+/* ---------- 9. 門市資訊 ---------- */
+.store-info__grid {
+  display: grid;
+  gap: var(--space-4);
+  align-items: start;
+}
+
+.store-info__list {
+  list-style: none;
+}
+
+.store-info__list li {
+  margin-bottom: var(--space-2);
+}
+
+.store-info__list dt {
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+.store-info__list dd {
+  margin: 0.2rem 0 0;
+  color: var(--color-text);
+}
+
+.store-map img {
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.store-map__caption {
+  font-size: 0.85rem;
+  color: var(--color-primary-light);
+  text-align: center;
+  margin-top: 0.4rem;
+}
+
+/* ---------- 10. 訂閱表單 ---------- */
+.subscribe {
+  background-color: var(--color-primary);
+  color: #fff;
+}
+
+.subscribe .section-title,
+.subscribe .section-subtitle {
+  color: #fff;
+}
+
+.subscribe-form {
+  max-width: 480px;
+  margin: 0 auto;
+  display: grid;
+  gap: var(--space-2);
+}
+
+.form-field {
+  display: grid;
+  gap: 0.35rem;
+  text-align: left;
+}
+
+.form-field label {
+  font-weight: 700;
+}
+
+.form-field input {
+  padding: 0.75rem;
+  border-radius: 8px;
+  border: none;
+  font-size: 1rem;
+  font-family: inherit;
+}
+
+.form-field input:invalid[data-touched="true"] {
+  outline: 3px solid var(--color-error);
+}
+
+.form-error {
+  color: #ffd7d7;
+  font-size: 0.85rem;
+  min-height: 1.2em;
+}
+
+.subscribe-success {
+  background-color: var(--color-success);
+  color: #fff;
+  border-radius: var(--radius);
+  padding: var(--space-2);
+  text-align: center;
+  display: none;
+}
+
+.subscribe-success.is-visible {
+  display: block;
+}
+
+.subscribe-disclaimer {
+  font-size: 0.85rem;
+  opacity: 0.85;
+  text-align: center;
+  margin-top: var(--space-2);
+}
+
+/* ---------- 11. Footer ---------- */
+.site-footer {
+  background-color: var(--color-text);
+  color: #f0e6d8;
+  padding: var(--space-4) 0;
+  text-align: center;
+  font-size: 0.9rem;
+}
+
+.site-footer p {
+  margin: 0 0 0.4rem;
+}
+
+.hidden {
+  display: none !important;
+}
+
+/* ==========================================================================
+   斷點策略（mobile-first，三段）
+   - 預設（<768px）：單欄、漢堡選單收合、商品 2 欄。
+   - 768-1023px（平板）：導覽列展開成橫列、商品 3 欄、故事區文字+圖並排。
+   - >=1024px（桌機）：容器置中最大寬度、商品 4 欄、門市資訊左右並排。
+   為什麼選 768 / 1024 這兩個切點：對應最常見的平板直向（768）與筆電/桌機
+   最小可視寬（1024），是業界最通用的兩個切點，學員之後換算其他專案也用得到。
+   ========================================================================== */
+
+/* ---- 768px 以上：平板 ---- */
+@media (min-width: 768px) {
+  .navbar__toggle {
+    display: none;
+  }
+
+  .navbar__menu {
+    display: flex;
+    width: auto;
+    gap: var(--space-3);
+    background: none;
+  }
+
+  .navbar__menu li {
+    border-top: none;
+  }
+
+  .navbar__menu a {
+    padding: 0.4rem 0;
+  }
+
+  .hero .container {
+    flex-direction: row;
+    text-align: left;
+  }
+
+  .hero__text {
+    flex: 1;
+  }
+
+  .hero__image {
+    flex: 1;
+  }
+
+  .countdown {
+    margin-left: 0;
+  }
+
+  .story__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .product-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .promo-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+
+  .store-info__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+/* ---- 1024px 以上：桌機 ---- */
+@media (min-width: 1024px) {
+  .product-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+
+  h1 {
+    font-size: 2.75rem;
+  }
+
+  .hero__tagline {
+    font-size: 1.3rem;
+  }
+}

@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="瓜地馬拉 安提瓜 深焙豆 250g">
+  <rect width="240" height="240" rx="18" fill="#ffffff"/>
+  <rect x="3" y="3" width="234" height="234" rx="16" fill="none" stroke="#e4d9c8" stroke-width="3"/>
+  <path d="M78 58 Q68 46 82 40 L158 40 Q172 46 162 58 L172 196 Q172 212 156 212 L84 212 Q68 212 68 196 Z" fill="#5c4130"/>
+  <rect x="94" y="26" width="52" height="20" rx="8" fill="#4b3324"/>
+  <rect x="72" y="96" width="96" height="14" rx="4" fill="#faf6f0" opacity="0.85"/>
+  <ellipse cx="105" cy="150" rx="11" ry="15.4" fill="#2b211a"/>
+  <path d="M105 134.6 Q109.4 150 105 165.4" stroke="#faf6f0" stroke-width="2" fill="none"/>
+  <ellipse cx="135" cy="158" rx="11" ry="15.4" fill="#2b211a"/>
+  <path d="M135 142.6 Q139.4 158 135 173.4" stroke="#faf6f0" stroke-width="2" fill="none"/>
+  <ellipse cx="120" cy="180" rx="11" ry="15.4" fill="#2b211a"/>
+  <path d="M120 164.6 Q124.4 180 120 195.4" stroke="#faf6f0" stroke-width="2" fill="none"/>
+</svg>

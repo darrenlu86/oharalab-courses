@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="雙層隔熱玻璃杯 350ml">
+  <rect width="240" height="240" rx="18" fill="#ffffff"/>
+  <rect x="3" y="3" width="234" height="234" rx="16" fill="none" stroke="#e4d9c8" stroke-width="3"/>
+  <path d="M84 66 L156 66 L148 190 Q146 202 132 202 L108 202 Q94 202 92 190 Z" fill="none" stroke="#4b3324" stroke-width="6"/>
+  <path d="M94 80 L146 80 L140 184 Q139 192 130 192 L110 192 Q101 192 100 184 Z" fill="#6b4a33" opacity="0.35"/>
+  <path d="M84 66 L156 66" stroke="#9c5b2b" stroke-width="6"/>
+</svg>

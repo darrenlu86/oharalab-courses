@@ -1,0 +1,110 @@
+[
+  {
+    "id": 1,
+    "name": "耶加雪菲 淺焙單品豆 250g",
+    "category": "beans",
+    "price": 520,
+    "stock": 25,
+    "description": "柑橘與茉莉花香，日曬處理",
+    "image": "/images/p1.svg"
+  },
+  {
+    "id": 2,
+    "name": "哥倫比亞 薇拉 中焙豆 250g",
+    "category": "beans",
+    "price": 460,
+    "stock": 30,
+    "description": "焦糖甜感，堅果尾韻",
+    "image": "/images/p2.svg"
+  },
+  {
+    "id": 3,
+    "name": "瓜地馬拉 安提瓜 深焙豆 250g",
+    "category": "beans",
+    "price": 480,
+    "stock": 22,
+    "description": "煙燻可可，厚實醇度",
+    "image": "/images/p3.svg"
+  },
+  {
+    "id": 4,
+    "name": "沖沖經典綜合豆 500g",
+    "category": "beans",
+    "price": 680,
+    "stock": 40,
+    "description": "店內招牌配方，適合每日手沖",
+    "image": "/images/p4.svg"
+  },
+  {
+    "id": 5,
+    "name": "耶加雪菲 掛耳包 10 入",
+    "category": "drip",
+    "price": 320,
+    "stock": 50,
+    "description": "單品掛耳，辦公室手沖首選",
+    "image": "/images/p5.svg"
+  },
+  {
+    "id": 6,
+    "name": "深焙醇厚掛耳包 10 入",
+    "category": "drip",
+    "price": 300,
+    "stock": 3,
+    "description": "深焙配方掛耳，牛奶絕配",
+    "image": "/images/p6.svg"
+  },
+  {
+    "id": 7,
+    "name": "手沖細口壺 600ml",
+    "category": "gear",
+    "price": 980,
+    "stock": 15,
+    "description": "不鏽鋼細口，水流穩定",
+    "image": "/images/p7.svg"
+  },
+  {
+    "id": 8,
+    "name": "陶瓷濾杯 V 型 01",
+    "category": "gear",
+    "price": 450,
+    "stock": 18,
+    "description": "螺旋肋槽，1-2 人份",
+    "image": "/images/p8.svg"
+  },
+  {
+    "id": 9,
+    "name": "手搖磨豆機 不鏽鋼刀盤",
+    "category": "gear",
+    "price": 1280,
+    "stock": 12,
+    "description": "外出與家用兩相宜",
+    "image": "/images/p9.svg"
+  },
+  {
+    "id": 10,
+    "name": "雙層隔熱玻璃杯 350ml",
+    "category": "cups",
+    "price": 380,
+    "stock": 35,
+    "description": "雙層隔熱，不燙手",
+    "image": "/images/p10.svg"
+  },
+  {
+    "id": 11,
+    "name": "冷萃咖啡瓶 1L",
+    "category": "gear",
+    "price": 550,
+    "stock": 0,
+    "description": "冷萃專用密封瓶（補貨中示範）",
+    "image": "/images/p11.svg"
+  },
+  {
+    "id": 12,
+    "name": "開幕禮盒（綜合豆＋掛耳＋雙層杯）",
+    "category": "gift",
+    "price": 1580,
+    "stock": 10,
+    "description": "開幕限定組合",
+    "image": "/images/p12.svg"
+  }
+]

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="BrewGo favicon">
+<rect width="64" height="64" rx="14" fill="#4b3324"/>
+<path d="M14 22 L14 38 Q14 46 22 46 L38 46 Q46 46 46 38 L46 22 Z" fill="#faf6f0"/>
+<path d="M46 25 Q54 24 53 32 Q52 38 45 36" fill="none" stroke="#faf6f0" stroke-width="4" stroke-linecap="round"/>
+</svg>

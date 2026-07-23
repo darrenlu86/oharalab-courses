@@ -1,0 +1,14 @@
+fastapi>=0.115,<1.0
+uvicorn[standard]>=0.30
+pydantic[email]>=2.7
+bcrypt>=4.1
+PyJWT>=2.8
+python-dotenv>=1.0
+pytest>=8.0
+httpx>=0.27
+websockets>=13.0
+# 壓力測試工具——master spec 白名單內。實測環境（Python 3.13.11／pip 25.x）
+# locust==2.46.1 安裝正常，見 docs/PERFORMANCE_REPORT.md 開頭的環境聲明；
+# 如果你的機器裝不起來，loadtest/asyncio_load_test.py 是不依賴 locust 的
+# fallback 腳本，一樣可以產生本文件要求的 RPS/p50/p95 數字。
+locust>=2.20

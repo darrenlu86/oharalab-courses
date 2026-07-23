@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img">
+  <title>開幕禮盒插圖（綜合豆＋掛耳＋雙層杯）</title>
+  <rect width="400" height="300" fill="#F3E6D6"/>
+
+  <!-- 禮盒本體 -->
+  <rect x="110" y="130" width="180" height="120" rx="8" fill="#9C5B2B"/>
+  <rect x="110" y="130" width="180" height="34" fill="#4b3324"/>
+
+  <!-- 緞帶 -->
+  <rect x="188" y="130" width="24" height="120" fill="#FBEFE0"/>
+  <rect x="110" y="152" width="180" height="20" fill="#FBEFE0"/>
+
+  <!-- 蝴蝶結 -->
+  <path d="M200 130 q-28 -30 -46 -6 q-6 20 46 22 Z" fill="#FBEFE0"/>
+  <path d="M200 130 q28 -30 46 -6 q6 20 -46 22 Z" fill="#FBEFE0"/>
+  <circle cx="200" cy="130" r="8" fill="#4b3324"/>
+
+  <!-- 盒內品項小圖示：豆袋 -->
+  <rect x="128" y="188" width="30" height="42" rx="4" fill="#4b3324"/>
+  <!-- 掛耳盒 -->
+  <rect x="172" y="188" width="30" height="42" rx="4" fill="#ffffff" stroke="#9C5B2B" stroke-width="2"/>
+  <!-- 雙層杯 -->
+  <path d="M226 190 h28 l-4 38 a10 10 0 0 1 -20 0 Z" fill="#ffffff" stroke="#4b3324" stroke-width="2"/>
+
+  <text x="200" y="270" font-family="-apple-system, 'Noto Sans TC', sans-serif" font-size="13" fill="#4b3324" text-anchor="middle">開幕限定組合</text>
+</svg>

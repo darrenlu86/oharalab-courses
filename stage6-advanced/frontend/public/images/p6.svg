@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="深焙醇厚掛耳包 10 入">
+  <rect width="240" height="240" rx="18" fill="#ffffff"/>
+  <rect x="3" y="3" width="234" height="234" rx="16" fill="none" stroke="#e4d9c8" stroke-width="3"/>
+  <path d="M84 46 L156 46 Q166 46 166 58 L166 176 Q166 192 148 192 L92 192 Q74 192 74 176 L74 58 Q74 46 84 46 Z" fill="#5c4130"/>
+  <rect x="100" y="30" width="40" height="18" rx="6" fill="#9c5b2b"/>
+  <path d="M120 90 Q108 110 120 130 Q132 110 120 90 Z" fill="#faf6f0" opacity="0.9"/>
+  <circle cx="120" cy="150" r="6" fill="#faf6f0" opacity="0.9"/>
+</svg>

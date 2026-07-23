@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>沖沖咖啡 BrewGo — 即將開幕｜每天沖一杯好咖啡</title>
+  <meta
+    name="description"
+    content="沖沖咖啡 BrewGo 即將開幕：認識我們的招牌選品、開幕優惠與門市資訊，訂閱開幕通知不錯過第一波優惠。"
+  />
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <a class="skip-link" href="#main-content">跳到主要內容</a>
+
+  <!-- ========== 導覽列 ========== -->
+  <header class="site-header">
+    <div class="navbar container">
+      <a class="navbar__logo" href="#" aria-label="沖沖咖啡 BrewGo 首頁">
+        <img src="images/logo.svg" alt="沖沖咖啡 BrewGo 標誌" />
+      </a>
+
+      <button
+        class="navbar__toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="primary-menu"
+        aria-label="開啟導覽選單"
+      >
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+        <span class="navbar__toggle-bar"></span>
+      </button>
+
+      <nav aria-label="主要導覽">
+        <ul class="navbar__menu" id="primary-menu">
+          <li><a href="#story">品牌故事</a></li>
+          <li><a href="#products">招牌選品</a></li>
+          <li><a href="#promo">開幕優惠</a></li>
+          <li><a href="#store">門市資訊</a></li>
+          <li><a href="#subscribe">訂閱</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content">
+    <!-- ========== Hero ========== -->
+    <section class="hero" aria-labelledby="site-title">
+      <div class="container">
+        <div class="hero__text">
+          <h1 id="site-title">沖沖咖啡 BrewGo</h1>
+          <p class="hero__tagline">每天沖一杯好咖啡。</p>
+          <p>
+            台北大安區的手沖咖啡專賣店即將開幕，賣自家烘焙的咖啡豆、掛耳包與沖煮器具。
+            訂閱下方通知，開幕當天第一時間收到優惠資訊。
+          </p>
+
+          <div class="countdown" data-countdown>
+            <div class="countdown__unit">
+              <span class="countdown__value" data-days>00</span>
+              <span class="countdown__label">天</span>
+            </div>
+            <div class="countdown__unit">
+              <span class="countdown__value" data-hours>00</span>
+              <span class="countdown__label">時</span>
+            </div>
+            <div class="countdown__unit">
+              <span class="countdown__value" data-minutes>00</span>
+              <span class="countdown__label">分</span>
+            </div>
+            <div class="countdown__unit">
+              <span class="countdown__value" data-seconds>00</span>
+              <span class="countdown__label">秒</span>
+            </div>
+          </div>
+          <p class="countdown--done hidden" data-countdown-done>
+            沖沖咖啡 BrewGo 已盛大開幕，歡迎光臨門市！
+          </p>
+
+          <a class="btn btn-primary" href="#subscribe">訂閱開幕通知</a>
+        </div>
+
+        <div class="hero__image">
+          <img src="images/hero-coffee.svg" alt="手沖咖啡器具插圖：細口壺、濾杯與玻璃壺" />
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 品牌故事 ========== -->
+    <section id="story" class="section" aria-labelledby="story-heading">
+      <div class="container story__grid">
+        <div class="story__image">
+          <img src="images/hero-coffee.svg" alt="手沖咖啡示意插圖" />
+        </div>
+        <div class="story__text">
+          <h2 id="story-heading">品牌故事</h2>
+          <p>
+            沖沖咖啡 BrewGo 從一台週末市集的手沖攤車開始。創辦人原本只是喜歡在家裡自己烘豆、
+            自己沖煮，後來被朋友慫恿去市集擺攤試賣，才發現「原來有這麼多人也想喝到不苦不澀、
+            喝得出產地風味的手沖咖啡」。
+          </p>
+          <p>
+            擺攤兩年後，我們決定開一間真正的門市：一半是零售櫃，賣自家烘焙的咖啡豆、掛耳包與
+            沖煮器具；一半是吧台，讓想學手沖的人可以現場看示範、問問題。
+          </p>
+          <p>
+            開幕前這段時間，我們把每天要用的器材、要賣的商品都準備好了——接下來要做的，就是把
+            這個小小的計畫真正的告訴大家。
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 招牌選品 ========== -->
+    <section id="products" class="section section-bg-surface" aria-labelledby="products-heading">
+      <div class="container">
+        <h2 id="products-heading" class="section-title">招牌選品</h2>
+        <p class="section-subtitle">開幕當天門市就會上架的四款招牌商品</p>
+
+        <div class="product-grid">
+          <article class="product-card">
+            <img src="images/p1.svg" alt="耶加雪菲淺焙單品豆商品插圖" />
+            <div class="product-card__body">
+              <h3 class="product-card__name">耶加雪菲 淺焙單品豆 250g</h3>
+              <p class="product-card__price">NT$520</p>
+              <p class="product-card__desc">柑橘與茉莉花香，日曬處理。</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img src="images/p4.svg" alt="沖沖經典綜合豆商品插圖" />
+            <div class="product-card__body">
+              <h3 class="product-card__name">沖沖經典綜合豆 500g</h3>
+              <p class="product-card__price">NT$680</p>
+              <p class="product-card__desc">店內招牌配方，適合每日手沖。</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img src="images/p5.svg" alt="耶加雪菲掛耳包十入商品插圖" />
+            <div class="product-card__body">
+              <h3 class="product-card__name">耶加雪菲 掛耳包 10 入</h3>
+              <p class="product-card__price">NT$320</p>
+              <p class="product-card__desc">單品掛耳，辦公室手沖首選。</p>
+            </div>
+          </article>
+
+          <article class="product-card">
+            <img src="images/p12.svg" alt="開幕禮盒商品插圖，內含綜合豆、掛耳與雙層杯" />
+            <div class="product-card__body">
+              <h3 class="product-card__name">開幕禮盒（綜合豆＋掛耳＋雙層杯）</h3>
+              <p class="product-card__price">NT$1580</p>
+              <p class="product-card__desc">開幕限定組合。</p>
+            </div>
+          </article>
+        </div>
+
+        <p class="product-note">
+          以上商品目前僅供瀏覽，線上加入購物車與下單功能會在後面階段（接上購物車與後端 API 之後）才上線。
+        </p>
+      </div>
+    </section>
+
+    <!-- ========== 開幕優惠 ========== -->
+    <section id="promo" class="section" aria-labelledby="promo-heading">
+      <div class="container">
+        <h2 id="promo-heading" class="section-title">開幕優惠</h2>
+        <p class="section-subtitle">開幕當週限定，三個優惠一起用</p>
+
+        <div class="promo-grid">
+          <div class="promo-card">
+            <h3 class="promo-card__title">開幕禮盒 9 折</h3>
+            <p class="promo-card__desc">開幕禮盒現省一成，數量有限。</p>
+          </div>
+          <div class="promo-card">
+            <h3 class="promo-card__title">掛耳買十送一</h3>
+            <p class="promo-card__desc">任選掛耳包買滿十入，加送一入。</p>
+          </div>
+          <div class="promo-card">
+            <h3 class="promo-card__title">消費滿 NT$1000 送雙層杯</h3>
+            <p class="promo-card__desc">單筆消費滿千元，送雙層隔熱玻璃杯一個。</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FAQ ========== -->
+    <section id="faq" class="section section-bg-surface" aria-labelledby="faq-heading">
+      <div class="container">
+        <h2 id="faq-heading" class="section-title">常見問題</h2>
+
+        <div class="accordion">
+          <div class="accordion__item">
+            <h3>
+              <button
+                class="accordion__trigger"
+                type="button"
+                aria-expanded="false"
+                aria-controls="faq-panel-1"
+              >
+                <span>什麼時候正式開幕？</span>
+                <span class="accordion__icon" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="accordion__panel" id="faq-panel-1" hidden>
+              <p>
+                開幕日期就是頁面上方倒數計時歸零的那一天，目前預計是 2026 年 9 月 1 日上午
+                10 點。實際日期若有異動，會透過訂閱通知第一時間告知。
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <h3>
+              <button
+                class="accordion__trigger"
+                type="button"
+                aria-expanded="false"
+                aria-controls="faq-panel-2"
+              >
+                <span>訂閱開幕通知會收到什麼？</span>
+                <span class="accordion__icon" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="accordion__panel" id="faq-panel-2" hidden>
+              <p>
+                我們預計會在開幕前寄出優惠券代碼與確切的開幕時間。目前這個頁面的表單是前端展示用，
+                還沒有真的接上寄信功能，詳見下方訂閱表單的說明。
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <h3>
+              <button
+                class="accordion__trigger"
+                type="button"
+                aria-expanded="false"
+                aria-controls="faq-panel-3"
+              >
+                <span>現在可以線上下單嗎？</span>
+                <span class="accordion__icon" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="accordion__panel" id="faq-panel-3" hidden>
+              <p>
+                還不行。這一頁只做商品展示，沒有購物車和結帳功能——這些會在後面的課程階段（多頁式商城、
+                前端互動、後端串接）陸續補上。
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <h3>
+              <button
+                class="accordion__trigger"
+                type="button"
+                aria-expanded="false"
+                aria-controls="faq-panel-4"
+              >
+                <span>門市有提供內用座位嗎？</span>
+                <span class="accordion__icon" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="accordion__panel" id="faq-panel-4" hidden>
+              <p>
+                門市以外帶與零售為主，吧台區保留給手沖示範與教學使用，暫時沒有規劃內用座位區。
+              </p>
+            </div>
+          </div>
+
+          <div class="accordion__item">
+            <h3>
+              <button
+                class="accordion__trigger"
+                type="button"
+                aria-expanded="false"
+                aria-controls="faq-panel-5"
+              >
+                <span>開幕優惠什麼時候開始、什麼時候結束？</span>
+                <span class="accordion__icon" aria-hidden="true">+</span>
+              </button>
+            </h3>
+            <div class="accordion__panel" id="faq-panel-5" hidden>
+              <p>
+                三項開幕優惠（開幕禮盒 9 折、掛耳買十送一、消費滿 NT$1000 送雙層杯）都是「開幕當週限定」，
+                從開幕日當天開始算，為期一週。
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 門市資訊 ========== -->
+    <section id="store" class="section" aria-labelledby="store-heading">
+      <div class="container store-info__grid">
+        <div>
+          <h2 id="store-heading">門市資訊</h2>
+          <dl class="store-info__list">
+            <div>
+              <dt>地址</dt>
+              <dd>台北市大安區沖沖街 1 號 1 樓</dd>
+            </div>
+            <div>
+              <dt>營業時間</dt>
+              <dd>週一至週五 08:00–19:00｜週六、週日 09:00–18:00</dd>
+            </div>
+            <div>
+              <dt>電話</dt>
+              <dd>（本頁為課程示範，暫不提供實際聯絡電話）</dd>
+            </div>
+          </dl>
+          <p>
+            教學備註：實際上線的門市頁面通常會嵌入 Google Maps 互動地圖，方便顧客直接導航。
+            本課程堅持零依賴、零外部服務，所以這裡改用一張手繪示意圖標示大概方位，
+            不是真正等比例的地圖。
+          </p>
+        </div>
+        <div class="store-map">
+          <img src="images/store-map.svg" alt="門市位置手繪示意圖，標示沖沖咖啡 BrewGo 位於沖沖街與大安路二段交叉口" />
+          <p class="store-map__caption">＊示意圖，非實際地圖比例</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== 訂閱表單 ========== -->
+    <section id="subscribe" class="section subscribe" aria-labelledby="subscribe-heading">
+      <div class="container">
+        <h2 id="subscribe-heading" class="section-title">訂閱開幕通知</h2>
+        <p class="section-subtitle">留下姓名與 email，開幕當天第一時間通知你</p>
+
+        <form class="subscribe-form" data-subscribe-form novalidate>
+          <div class="form-field">
+            <label for="subscribe-name">姓名</label>
+            <input type="text" id="subscribe-name" name="name" required autocomplete="name" />
+            <span class="form-error" data-error-for="name" role="alert"></span>
+          </div>
+
+          <div class="form-field">
+            <label for="subscribe-email">Email</label>
+            <input type="email" id="subscribe-email" name="email" required autocomplete="email" />
+            <span class="form-error" data-error-for="email" role="alert"></span>
+          </div>
+
+          <button class="btn btn-primary" type="submit">送出訂閱</button>
+        </form>
+
+        <p class="subscribe-success" data-subscribe-success role="status">
+          訂閱成功！開幕當天會用這個 email 通知你（本頁為前端展示，資料沒有真的送出去）。
+        </p>
+
+        <p class="subscribe-disclaimer">
+          誠實聲明：這個表單目前只是前端展示，填寫送出後資料不會被儲存、也不會寄出任何信件——
+          純粹示範「必填欄位＋email 格式」的前端驗證怎麼寫。真的能收到通知的訂閱功能，
+          需要一支後端 API 接住這筆資料，這是後面階段（stage4 起）才會做的事。
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <!-- ========== Footer ========== -->
+  <footer class="site-footer">
+    <div class="container">
+      <p><strong>沖沖咖啡 BrewGo</strong>｜每天沖一杯好咖啡。</p>
+      <p>台北市大安區沖沖街 1 號 1 樓</p>
+      <p>本站為課程教學範例，非真實商業網站。</p>
+    </div>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>

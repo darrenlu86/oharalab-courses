@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="深焙醇厚掛耳包插畫">
+<title>深焙醇厚掛耳包插畫</title>
+<rect width="100%" height="100%" rx="16" fill="#faf6f0"/>
+
+<g transform="translate(200,150)">
+  <path d="M -46 -70 L 46 -70 L 46 70 Q 0 90 -46 70 Z" fill="#4b3324"/>
+  <rect x="-58" y="-84" width="30" height="26" rx="6" fill="#6b4a33"/>
+  <rect x="28" y="-84" width="30" height="26" rx="6" fill="#6b4a33"/>
+  <line x1="-46" y1="-52" x2="46" y2="-52" stroke="#faf6f0" stroke-width="4"/>
+  <line x1="-30" y1="-10" x2="30" y2="-10" stroke="#faf6f0" stroke-width="3" opacity="0.6"/>
+  <line x1="-30" y1="20" x2="30" y2="20" stroke="#faf6f0" stroke-width="3" opacity="0.6"/>
+</g>
+</svg>

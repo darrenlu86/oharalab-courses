@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="冷萃咖啡瓶 1L">
+  <rect width="240" height="240" rx="18" fill="#ffffff"/>
+  <rect x="3" y="3" width="234" height="234" rx="16" fill="none" stroke="#e4d9c8" stroke-width="3"/>
+  <rect x="104" y="40" width="32" height="22" rx="6" fill="#9c5b2b"/>
+  <path d="M100 62 L140 62 L148 92 Q152 100 152 112 L152 186 Q152 200 138 200 L102 200 Q88 200 88 186 L88 112 Q88 100 92 92 Z" fill="#6b4a33"/>
+  <rect x="92" y="120" width="56" height="60" rx="4" fill="#faf6f0" opacity="0.3"/>
+</svg>

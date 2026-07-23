@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" role="img">
+  <title>門市位置示意圖（非實際地圖比例，僅供參考方向）</title>
+  <rect width="480" height="320" fill="#faf6f0"/>
+
+  <!-- 街廓色塊 -->
+  <rect x="0" y="0" width="480" height="320" fill="#f0e6d8"/>
+  <rect x="30" y="30" width="180" height="110" fill="#e7dccb"/>
+  <rect x="270" y="30" width="180" height="110" fill="#e7dccb"/>
+  <rect x="30" y="180" width="180" height="110" fill="#e7dccb"/>
+  <rect x="270" y="180" width="180" height="110" fill="#e7dccb"/>
+
+  <!-- 沖沖街（縱向主幹道） -->
+  <rect x="220" y="0" width="40" height="320" fill="#ffffff" stroke="#c9a06c" stroke-width="2"/>
+  <line x1="240" y1="0" x2="240" y2="320" stroke="#c9a06c" stroke-width="2" stroke-dasharray="10 8"/>
+
+  <!-- 橫向道路 -->
+  <rect x="0" y="150" width="480" height="20" fill="#ffffff" stroke="#c9a06c" stroke-width="2"/>
+
+  <!-- 路名標示 -->
+  <text x="248" y="40" font-family="-apple-system, 'Noto Sans TC', sans-serif" font-size="13" fill="#4b3324">沖沖街</text>
+  <text x="20" y="164" font-family="-apple-system, 'Noto Sans TC', sans-serif" font-size="13" fill="#4b3324">大安路二段</text>
+
+  <!-- 店面標記 -->
+  <g transform="translate(240 108)">
+    <path d="M0 0 C -18 0 -20 -22 0 -40 C 20 -22 18 0 0 0 Z" fill="#9c5b2b"/>
+    <circle cx="0" cy="-24" r="9" fill="#ffffff"/>
+  </g>
+  <text x="240" y="128" font-family="-apple-system, 'Noto Sans TC', sans-serif" font-size="13" font-weight="700" fill="#2b211a" text-anchor="middle">沖沖咖啡 BrewGo</text>
+  <text x="240" y="144" font-family="-apple-system, 'Noto Sans TC', sans-serif" font-size="11" fill="#6b4a33" text-anchor="middle">大安區沖沖街 1 號 1 樓</text>
+
+  <!-- 示意圖聲明 -->
+  <text x="10" y="308" font-family="-apple-system, 'Noto Sans TC', sans-serif" font-size="11" fill="#6b4a33">＊本圖為手繪示意圖，非實際地圖比例</text>
+</svg>

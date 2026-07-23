@@ -1,0 +1,85 @@
+# stage6 CI 範例 workflow——放在這個資料夾當教材，不是直接生效的設定檔。
+#
+# 如果要真的讓它生效，要複製到 repo 根目錄的 `.github/workflows/` 底下（GitHub
+# Actions 只會讀取這個固定路徑），這是主迴圈的決定範圍，不是本階段 builder
+# 自己決定要不要接上；本檔案單純是「這支 workflow 長什麼樣子」的教學範例。
+#
+# 觸發條件用 `paths:` 過濾，只在 `stage6-advanced/` 底下的檔案有變動時才跑——
+# 這個 repo 同時放了六個階段的教材，如果沒有這個過濾，改 stage1 的一行文字
+# 也會觸發 stage6 的完整測試，浪費 CI 分鐘數也讓人搞不清楚這次失敗跟自己的
+# 改動有沒有關係。
+
+name: stage6 CI
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "stage6-advanced/**"
+      - ".github/workflows/stage6-ci.yml"
+  pull_request:
+    branches: [main]
+    paths:
+      - "stage6-advanced/**"
+
+jobs:
+  backend-tests:
+    name: 後端 pytest
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: stage6-advanced/backend
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 設定 Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.13"
+          # cache 這個選項會把 pip 下載過的套件存進 GitHub Actions 的快取，
+          # 下次跑 workflow（只要 requirements.txt 沒變）不用重新從 PyPI 下載，
+          # 明顯縮短 CI 執行時間——這也是「快取」這個概念在 CI 情境下的實例，
+          # 跟本階段 app/cache.py 的 TTL 快取是同一個道理的不同應用場景。
+          cache: "pip"
+          cache-dependency-path: stage6-advanced/backend/requirements.txt
+
+      - name: 安裝依賴
+        run: pip install -r requirements.txt
+
+      - name: 初始化測試用資料庫（供健康檢查/煙囪測試使用，pytest 本身用暫存 DB 不需要這步）
+        run: python scripts/init_db.py
+
+      - name: 執行測試
+        run: pytest -q
+
+  frontend-build:
+    name: 前台／後台 build 與測試
+    runs-on: ubuntu-latest
+    strategy:
+      # matrix 讓同一份步驟分別套用到 frontend/ 跟 admin/ 兩個資料夾，不用
+      # 複製貼上兩份幾乎一樣的 job 定義——這是 GitHub Actions 內建的「同一套
+      # 步驟、不同參數各跑一份」機制，跟寫程式時把重複邏輯抽成函式是同一個
+      #「不要重複自己（DRY）」的精神。
+      matrix:
+        app: [frontend, admin]
+    defaults:
+      run:
+        working-directory: stage6-advanced/${{ matrix.app }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: 設定 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+          cache-dependency-path: stage6-advanced/${{ matrix.app }}/package-lock.json
+
+      - name: 安裝依賴（用 lockfile 精確版本，跟本機 npm install 的差異見 docs/CICD.md）
+        run: npm ci
+
+      - name: 執行測試
+        run: npm test -- --run
+
+      - name: Build
+        run: npm run build
