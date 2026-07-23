@@ -1,0 +1,10 @@
+venv/
+__pycache__/
+*.pyc
+data/*.db
+*.joblib
+*.bak*
+.ipynb_checkpoints/
+.DS_Store
+stage3_crawler/output/
+.env

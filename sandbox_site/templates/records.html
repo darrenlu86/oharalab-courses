@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block title %}歷史觀測 — {{ city_name_zh }}（教學沙盒）{% endblock %}
+{% block content %}
+<h1>歷史每日觀測 — {{ city_name_zh }}（{{ city }}）</h1>
+<p>資料來源：<code>data/raw/{{ city }}.csv</code>（Open-Meteo 真實歷史天氣資料）。每頁 50 列，練習關卡二：翻頁爬蟲。</p>
+
+<table class="records-table">
+  <caption>{{ city_name_zh }} 每日觀測（第 {{ page }} 頁 / 共 {{ total_pages }} 頁）</caption>
+  <thead>
+    <tr>
+      {% for col in columns %}
+      <th>{{ col }}</th>
+      {% endfor %}
+    </tr>
+  </thead>
+  <tbody>
+    {% for row in rows %}
+    <tr>
+      {% for col in columns %}
+      <td>{{ row[col] }}</td>
+      {% endfor %}
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="pagination">
+  {% if page > 1 %}
+  <a href="/records?city={{ city }}&page={{ page - 1 }}">上一頁</a>
+  {% else %}
+  <span class="disabled">上一頁</span>
+  {% endif %}
+  <span>第 {{ page }} 頁 / 共 {{ total_pages }} 頁</span>
+  {% if page < total_pages %}
+  <a href="/records?city={{ city }}&page={{ page + 1 }}">下一頁</a>
+  {% else %}
+  <span class="disabled">下一頁</span>
+  {% endif %}
+</div>
+{% endblock %}

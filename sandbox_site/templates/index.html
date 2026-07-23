@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block title %}首頁 — 福爾摩沙氣象站（教學沙盒）{% endblock %}
+{% block content %}
+<div class="banner">
+  本站為教學沙盒網站，資料含真實天氣資料（Open-Meteo）與程式生成之合成留言/公告。
+  本站是「台灣天氣資料科學課程」stage3_crawler（爬蟲教學）的練習標的，不是真實氣象服務網站。
+</div>
+
+<h1>導覽</h1>
+<div class="card-grid">
+  <div class="card">
+    <a href="/stations">測站清單</a>
+    <p>三個示範城市（{{ city_names }}）的座標資料，靜態表格，練習關卡一：靜態 HTML 解析。</p>
+  </div>
+  <div class="card">
+    <a href="/records?city=taipei&page=1">歷史觀測</a>
+    <p>各城市每日觀測資料，分頁呈現（每頁 50 列），練習關卡二：翻頁爬蟲。</p>
+  </div>
+  <div class="card">
+    <a href="/api/latest?city=taipei">/api/latest JSON API</a>
+    <p>回傳指定城市最後 30 天觀測資料的 JSON，練習關卡三：直接打 JSON API。</p>
+  </div>
+  <div class="card">
+    <a href="/comments?page=1">民眾留言</a>
+    <p>合成留言分頁列表，含 1~5 的星等數字，可作情感分類的練習語料。</p>
+  </div>
+  <div class="card">
+    <a href="/announcements">公告</a>
+    <p>公告列表與詳情頁，練習「列表→詳情」兩層爬取模式。</p>
+  </div>
+</div>
+
+<h2>測站</h2>
+<ul class="plain-list">
+  {% for station in stations %}
+  <li>{{ station.name_zh }}（{{ station.city }}）— {{ station.latitude }}, {{ station.longitude }}</li>
+  {% endfor %}
+</ul>
+{% endblock %}

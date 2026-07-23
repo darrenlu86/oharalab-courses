@@ -1,0 +1,22 @@
+# 台灣天氣資料科學課程 — 主要相依套件
+# 版本以 `venv/bin/pip show <套件>` 實際查詢結果為準（非 pip freeze 全量匯出，
+# 避免把作業系統/venv 底層的間接依賴也鎖進來，方便學員閱讀）。
+# 安裝方式：venv/bin/pip install -r requirements.txt
+
+requests==2.34.2          # stage1/scripts：呼叫 Open-Meteo Data API（歷史/預報）
+beautifulsoup4==4.15.0    # stage3：解析沙盒氣象站的 server-rendered HTML
+fastapi==0.139.2          # sandbox_site / stage6：教學沙盒網站與儀表板的 API 框架
+uvicorn[standard]==0.51.0 # ASGI 伺服器，啟動 sandbox_site 與 stage6 的 FastAPI app
+jinja2==3.1.6             # sandbox_site：伺服器端渲染 HTML 模板
+pandas==3.0.5             # 全課程：天氣/留言等表格資料的讀取、清理、彙整
+numpy==2.5.1              # 全課程：數值運算，pandas 與 scikit-learn 的底層依賴
+matplotlib==3.11.1        # stage2/stage4/stage5：EDA 圖表與模型評估圖（搭配 common/fonts.py 顯示中文）
+scikit-learn==1.9.0       # stage4/stage5：分類/回歸模型、TF-IDF、MLPClassifier、內建手寫數字資料集
+joblib==1.5.3             # stage4/stage5：訓練後模型序列化/載入（*.joblib，gitignored）
+jieba==0.42.1             # stage5：中文留言斷詞，供 TF-IDF 前處理
+notebook==7.6.1           # stage2：撰寫與互動執行 analysis.ipynb
+nbclient==0.11.0          # stage2/測試：headless 執行 notebook，驗證全部 cell 無錯誤
+nbformat==5.10.4          # stage2：讀寫 .ipynb 檔案格式，nbclient 的必要依賴
+pytest==9.1.1             # tests/：全 repo 單一測試入口
+httpx==0.28.1             # sandbox_site/stage6：FastAPI TestClient 依賴、測試用同步/非同步 HTTP 用戶端
+python-dotenv==1.2.2      # stage1：讀取 mock AI API 金鑰等環境變數，避免寫死進版控

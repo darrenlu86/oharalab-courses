@@ -1,0 +1,47 @@
+{% extends "base.html" %}
+{% block title %}民眾留言 — 福爾摩沙氣象站（教學沙盒）{% endblock %}
+{% block content %}
+<h1>民眾天氣留言{% if city %} — {{ city_name_zh }}（{{ city }}）{% endif %}</h1>
+<p>
+  以下留言為程式生成的合成語料（<code>scripts/generate_synthetic.py</code>，seed 20260723），
+  非真實網友留言，rating 以 1~5 數字呈現。每頁 50 筆。
+</p>
+
+<table class="comments-table">
+  <caption>民眾留言（第 {{ page }} 頁 / 共 {{ total_pages }} 頁）</caption>
+  <thead>
+    <tr>
+      <th>comment_id</th>
+      <th>city</th>
+      <th>date</th>
+      <th>rating</th>
+      <th>content</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in rows %}
+    <tr>
+      <td>{{ c.comment_id }}</td>
+      <td>{{ c.city }}</td>
+      <td>{{ c.date }}</td>
+      <td>{{ c.rating }}</td>
+      <td>{{ c.content }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<div class="pagination">
+  {% if page > 1 %}
+  <a href="/comments?{% if city %}city={{ city }}&{% endif %}page={{ page - 1 }}">上一頁</a>
+  {% else %}
+  <span class="disabled">上一頁</span>
+  {% endif %}
+  <span>第 {{ page }} 頁 / 共 {{ total_pages }} 頁</span>
+  {% if page < total_pages %}
+  <a href="/comments?{% if city %}city={{ city }}&{% endif %}page={{ page + 1 }}">下一頁</a>
+  {% else %}
+  <span class="disabled">下一頁</span>
+  {% endif %}
+</div>
+{% endblock %}
