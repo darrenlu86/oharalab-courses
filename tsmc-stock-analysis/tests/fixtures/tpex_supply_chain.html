@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head><meta charset="utf-8"><title>產業價值鏈資訊平台 - 半導體產業鏈（測試用固定 fixture）</title></head>
+<body>
+<div class="content-panel-main">
+
+  <!-- 上游：1 個 segment，2 家公司（1 家有股票代號、1 家是知名外國企業無代號） -->
+  <div class="chain">
+    <div class="chain-title-panel">上游</div>
+    <div class="chain-space"></div>
+    <div class="chain-company">
+      <div class="company-chain-panel" id="ic_link_UP1">IP設計</div>
+    </div>
+  </div>
+
+  <!-- 中游：1 個列出公司的 segment（含台積電自己）+ 1 個「有按鈕但沒有清單區塊」的 segment -->
+  <div class="chain">
+    <div class="chain-title-panel">中游</div>
+    <div class="chain-space"></div>
+    <div class="chain-company">
+      <div class="company-chain-panel" id="ic_link_MID1">IC/晶圓製造</div>
+    </div>
+    <div class="chain-company">
+      <div class="company-chain-panel" id="ic_link_MID2">缺列示區塊</div>
+    </div>
+  </div>
+
+  <!-- 下游：1 個 segment，1 家名稱空白（應跳過）、1 家正常（含前後空白測試 strip） -->
+  <div class="chain">
+    <div class="chain-title-panel">下游</div>
+    <div class="chain-space"></div>
+    <div class="chain-company">
+      <div class="company-chain-panel" id="ic_link_DOWN1">IC封裝測試</div>
+    </div>
+  </div>
+
+  <!-- 無法辨識的分類標題：整區塊應被跳過，底下的 segment 不該出現在解析結果 -->
+  <div class="chain">
+    <div class="chain-title-panel">特殊游</div>
+    <div class="chain-space"></div>
+    <div class="chain-company">
+      <div class="company-chain-panel" id="ic_link_WEIRD">怪環節</div>
+    </div>
+  </div>
+
+  <!-- companyList_UP1：上游／IP設計 -->
+  <div id="companyList_UP1" title="IP設計" class="x-hidden">
+    <div class="company-list">
+      <table cellpadding="5" cellspacing="5">
+        <tr><td class="company"><b>本國上市公司(1家)</b></td>
+            <td class="company"><a href="company_basic.php?stk_code=3443" class="company-text-over" title="創意">創意</a></td></tr>
+        <tr><td class="company"><b>知名外國企業(1家)</b></td>
+            <td class="company"><a href="http://example.com/foreignco" class="company-text-over" title="國外測試公司">國外測試公司</a></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- companyList_MID1：中游／IC・晶圓製造（刻意出現兩次，內容相同，模擬桌機/行動裝置各一份 DOM，測試去重） -->
+  <div id="companyList_MID1" title="IC/晶圓製造" class="x-hidden">
+    <div class="company-list">
+      <table cellpadding="5" cellspacing="5">
+        <tr><td class="company"><b>本國上市公司(2家)</b></td>
+            <td class="company"><a href="company_basic.php?stk_code=2330" class="company-text-over" title="台積電">台積電</a></td>
+            <td class="company"><a href="company_basic.php?stk_code=9999" class="company-text-over" title="測試中游公司">測試中游公司</a></td></tr>
+      </table>
+    </div>
+  </div>
+  <div id="companyList_MID1" title="IC/晶圓製造" class="x-hidden">
+    <div class="company-list">
+      <table cellpadding="5" cellspacing="5">
+        <tr><td class="company"><b>本國上市公司(2家)</b></td>
+            <td class="company"><a href="company_basic.php?stk_code=2330" class="company-text-over" title="台積電">台積電</a></td>
+            <td class="company"><a href="company_basic.php?stk_code=9999" class="company-text-over" title="測試中游公司">測試中游公司</a></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- companyList_DOWN1：下游／IC封裝測試 -->
+  <div id="companyList_DOWN1" title="IC封裝測試" class="x-hidden">
+    <div class="company-list">
+      <table cellpadding="5" cellspacing="5">
+        <tr><td class="company"><b>本國上市公司(2家)</b></td>
+            <td class="company"><a href="company_basic.php?stk_code=6197" class="company-text-over" title="">   </a></td>
+            <td class="company"><a href="company_basic.php?stk_code=8016" class="company-text-over" title="測試下游公司">  測試下游公司  </a></td></tr>
+      </table>
+    </div>
+  </div>
+
+  <!-- 注意：companyList_MID2 與 companyList_WEIRD 刻意不存在，
+       用來測試「找不到清單區塊」與「無法辨識分類」兩種跳過情境。 -->
+
+</div>
+</body>
+</html>

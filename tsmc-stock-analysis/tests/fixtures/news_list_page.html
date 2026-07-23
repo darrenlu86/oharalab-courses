@@ -1,0 +1,54 @@
+<!--
+tests/fixtures/news_list_page.html — 模擬鉅亨網「台積電」標籤頁渲染完成後的
+局部 HTML 結構（2026-07-22 實測真實頁面後，抽取結構重寫，內容為教學用
+虛構文字，非真實新聞）。
+
+用來測試 parse_list_items()：
+  - 前 4 個是正常項目（含標題與連結）。
+  - 第 5 個 href 與第 1 個相同（同一篇新聞在頁面版位重複出現），用來驗證去重。
+  - 第 6 個是 id=0 的預留卡片（文字固定「--」），用來驗證會被排除。
+  - 第 7 個連結沒有文字（純圖片連結），用來驗證會被排除。
+-->
+<ul class="c1i7i5yp">
+  <div class="date-card-container">2026-07-22</div>
+  <li class="vv2cpsg">
+    <p class="hnsxxd"><time class="d32tf3x">07-22</time><span class="bo8lcb7">台股新聞</span></p>
+    <div class="t1m5ilmj">
+      <a href="/news/id/9001001"><p title="示範標題：台積電法說會展望樂觀" class="tgtkale">示範標題：台積電法說會展望樂觀</p></a>
+    </div>
+    <p class="s5flkzr">這是清單頁上顯示的短摘要文字，僅供教學測試使用。</p>
+  </li>
+  <li class="vv2cpsg">
+    <p class="hnsxxd"><time class="d32tf3x">07-22</time><span class="bo8lcb7">台股新聞</span></p>
+    <div class="t1m5ilmj">
+      <a href="/news/id/9001002"><p title="示範標題：先進製程產能滿載" class="tgtkale">示範標題：先進製程產能滿載</p></a>
+    </div>
+  </li>
+  <li class="vv2cpsg">
+    <p class="hnsxxd"><time class="d32tf3x">07-21</time><span class="bo8lcb7">台股新聞</span></p>
+    <div class="t1m5ilmj">
+      <a href="/news/id/9001003"><p title="示範標題：外資調升目標價" class="tgtkale">示範標題：外資調升目標價</p></a>
+    </div>
+  </li>
+  <li class="vv2cpsg">
+    <p class="hnsxxd"><time class="d32tf3x">07-21</time><span class="bo8lcb7">台股新聞</span></p>
+    <div class="t1m5ilmj">
+      <a href="/news/id/9001004"><p title="示範標題：供應鏈拉貨動能強勁" class="tgtkale">示範標題：供應鏈拉貨動能強勁</p></a>
+    </div>
+  </li>
+  <li class="vv2cpsg">
+    <div class="t1m5ilmj">
+      <a href="/news/id/9001001"><p title="示範標題：台積電法說會展望樂觀（重複版位）" class="tgtkale">示範標題：台積電法說會展望樂觀（重複版位）</p></a>
+    </div>
+  </li>
+  <li class="vv2cpsg">
+    <div class="t1m5ilmj">
+      <a href="/news/id/0"><p class="tgtkale">--</p></a>
+    </div>
+  </li>
+  <li class="vv2cpsg">
+    <div class="t1m5ilmj">
+      <a href="/news/id/9001005"><img alt="save" src="/assets/icons/icon-bookmark.svg"></a>
+    </div>
+  </li>
+</ul>
