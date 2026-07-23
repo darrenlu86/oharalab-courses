@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% block title %}測站清單 — 福爾摩沙氣象站（教學沙盒）{% endblock %}
+{% block content %}
+<h1>測站清單</h1>
+<p>本課程固定的三個示範城市，座標與 <code>scripts/init_db.py</code> 的 <code>DEFAULT_STATIONS</code> 一致（練習關卡一：靜態 HTML 解析）。</p>
+<table class="stations-table">
+  <caption>測站清單</caption>
+  <thead>
+    <tr>
+      <th>city</th>
+      <th>name_zh</th>
+      <th>latitude</th>
+      <th>longitude</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for station in stations %}
+    <tr>
+      <td>{{ station.city }}</td>
+      <td>{{ station.name_zh }}</td>
+      <td>{{ station.latitude }}</td>
+      <td>{{ station.longitude }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% endblock %}

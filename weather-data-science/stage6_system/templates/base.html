@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}天氣智慧儀表板（教學系統）{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="/">天氣智慧儀表板（stage6_system 教學系統）</a>
+  </header>
+  <nav class="site-nav">
+    <a href="/">總覽</a>
+    <a href="/predict">明日降雨預測</a>
+    <a href="/sentiment">留言情感面板</a>
+    <a href="/monitoring">模型監測</a>
+  </nav>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <p>本系統為「台灣天氣資料科學課程」stage6_system（AI-12 資料科學在真實世界的應用系統）教學範例，模型全部由 stage4/stage5 訓練，僅供教學展示，非正式氣象預報服務。</p>
+    <p class="attribution">
+      天氣資料：<a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>（CC BY 4.0）；留言資料為程式生成的合成語料（<code>scripts/generate_synthetic.py</code>，seed 20260723），非真實網友留言。
+    </p>
+  </footer>
+  <script src="/static/vendor/chart.umd.min.js"></script>
+</body>
+</html>

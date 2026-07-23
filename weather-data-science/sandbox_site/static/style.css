@@ -1,0 +1,148 @@
+/* 福爾摩沙氣象站（教學沙盒站）樣式表。零 JS、零 emoji，純 CSS。 */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", sans-serif;
+  color: #1f2933;
+  background: #f5f6f7;
+  line-height: 1.6;
+}
+
+header.site-header {
+  background: #1f4e5f;
+  color: #fff;
+  padding: 1rem 1.5rem;
+}
+
+header.site-header a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav.site-nav {
+  background: #eef2f3;
+  padding: 0.6rem 1.5rem;
+  border-bottom: 1px solid #d3dade;
+}
+
+nav.site-nav a {
+  margin-right: 1rem;
+  color: #1f4e5f;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+nav.site-nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  max-width: 960px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.banner {
+  background: #fff6e5;
+  border: 1px solid #e8c877;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background: #fff;
+}
+
+table caption {
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+}
+
+th, td {
+  border: 1px solid #d3dade;
+  padding: 0.45rem 0.6rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+th {
+  background: #e4ebec;
+}
+
+tbody tr:nth-child(even) {
+  background: #fafbfb;
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.pagination a {
+  color: #1f4e5f;
+}
+
+.pagination .disabled {
+  color: #9aa5aa;
+}
+
+ul.plain-list {
+  list-style: none;
+  padding: 0;
+}
+
+ul.plain-list li {
+  padding: 0.5rem 0;
+  border-bottom: 1px solid #e4ebec;
+}
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0;
+}
+
+.card-grid .card {
+  background: #fff;
+  border: 1px solid #d3dade;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.card-grid .card a {
+  color: #1f4e5f;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+footer.site-footer {
+  border-top: 1px solid #d3dade;
+  padding: 1rem 1.5rem;
+  font-size: 0.85rem;
+  color: #52606d;
+  margin-top: 2rem;
+}
+
+footer.site-footer a {
+  color: #52606d;
+}
+
+.attribution {
+  font-size: 0.8rem;
+  color: #7b8794;
+  margin-top: 0.4rem;
+}

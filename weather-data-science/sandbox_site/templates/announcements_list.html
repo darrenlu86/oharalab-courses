@@ -1,0 +1,17 @@
+{% extends "base.html" %}
+{% block title %}公告 — 福爾摩沙氣象站（教學沙盒）{% endblock %}
+{% block content %}
+<h1>公告列表</h1>
+<p>
+  以下公告為程式生成的合成內容（<code>scripts/generate_synthetic.py</code>，seed 20260724），
+  非真實公告。點選標題進入詳情頁，練習「列表→詳情」兩層爬取模式。
+</p>
+<ul class="plain-list">
+  {% for a in announcements %}
+  <li>
+    <a href="/announcements/{{ a.ann_id }}">{{ a.title }}</a>
+    <span> — {{ a.published_at }}（{{ a.ann_id }}）</span>
+  </li>
+  {% endfor %}
+</ul>
+{% endblock %}

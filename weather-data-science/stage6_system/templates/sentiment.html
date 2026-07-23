@@ -1,0 +1,82 @@
+{% extends "base.html" %}
+{% block title %}留言情感面板 — 天氣智慧儀表板{% endblock %}
+{% block content %}
+<h1>留言情感面板</h1>
+<p>
+  對 <code>data/weather_course.db</code> 的 <code>comments</code> 表跑
+  <code>stage5_ml_unstructured</code> 訓練好的 MLP 情感分類模型（即時計算，不預先寫入資料庫）。
+  留言為程式生成的合成語料，非真實網友留言（見頁尾說明）。
+</p>
+
+{% if summary.total > 0 %}
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="label">留言總數</div>
+    <div class="value">{{ summary.total }}</div>
+  </div>
+  <div class="stat-card positive">
+    <div class="label">預測正面</div>
+    <div class="value">{{ summary.positive }}（{{ '%.1f'|format(summary.positive / summary.total * 100) }}%）</div>
+  </div>
+  <div class="stat-card negative">
+    <div class="label">預測負面</div>
+    <div class="value">{{ summary.negative }}（{{ '%.1f'|format(summary.negative / summary.total * 100) }}%）</div>
+  </div>
+</div>
+
+<div class="chart-grid">
+  <div class="chart-card">
+    <h3>正負面比例</h3>
+    <canvas id="chart-sentiment" height="220"></canvas>
+  </div>
+</div>
+
+<h2>最新留言（前 {{ summary.latest|length }} 筆）</h2>
+<table class="comments-table">
+  <thead>
+    <tr>
+      <th>city</th>
+      <th>date</th>
+      <th>rating</th>
+      <th>預測情感</th>
+      <th>正面機率</th>
+      <th>content</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for c in summary.latest %}
+    <tr>
+      <td>{{ c.city }}</td>
+      <td>{{ c.date }}</td>
+      <td>{{ c.rating }}</td>
+      <td class="{{ 'label-positive' if c.predicted_label else 'label-negative' }}">
+        {{ '正面' if c.predicted_label else '負面' }}
+      </td>
+      <td>{{ '%.0f'|format(c.predicted_proba * 100) }}%</td>
+      <td>{{ c.content }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+
+<script>
+new Chart(document.getElementById('chart-sentiment'), {
+  type: 'doughnut',
+  data: {
+    labels: ['正面', '負面'],
+    datasets: [{
+      data: [{{ summary.positive }}, {{ summary.negative }}],
+      backgroundColor: ['#1b6e3c', '#b3401f'],
+    }],
+  },
+  options: { responsive: true },
+});
+</script>
+
+{% else %}
+<div class="empty-state">
+  目前資料庫沒有留言資料。請先執行：
+  <code>venv/bin/python -m stage6_system.pipeline.bootstrap</code>
+</div>
+{% endif %}
+{% endblock %}

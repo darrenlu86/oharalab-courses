@@ -1,0 +1,10 @@
+{% extends "base.html" %}
+{% block title %}{{ announcement.title }} — 福爾摩沙氣象站（教學沙盒）{% endblock %}
+{% block content %}
+<p><a href="/announcements">&laquo; 回公告列表</a></p>
+<article>
+  <h1>{{ announcement.title }}</h1>
+  <p><small>{{ announcement.ann_id }} ｜ 發布日期：{{ announcement.published_at }}</small></p>
+  <p>{{ announcement.body }}</p>
+</article>
+{% endblock %}

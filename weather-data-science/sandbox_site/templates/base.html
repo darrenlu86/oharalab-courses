@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="utf-8">
+  <title>{% block title %}福爾摩沙氣象站（教學沙盒）{% endblock %}</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <a href="/">福爾摩沙氣象站（教學沙盒）</a>
+  </header>
+  <nav class="site-nav">
+    <a href="/">首頁</a>
+    <a href="/stations">測站清單</a>
+    <a href="/records?city=taipei&page=1">歷史觀測</a>
+    <a href="/comments?page=1">民眾留言</a>
+    <a href="/announcements">公告</a>
+    <a href="/robots.txt">robots.txt</a>
+  </nav>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="site-footer">
+    <p>本站為教學沙盒網站：天氣資料來自 Open-Meteo（真實），留言與公告為程式生成之合成資料。</p>
+    <p class="attribution">
+      <a href="https://open-meteo.com/">Weather data by Open-Meteo.com</a>（CC BY 4.0）
+    </p>
+  </footer>
+</body>
+</html>

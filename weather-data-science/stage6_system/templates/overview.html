@@ -1,0 +1,89 @@
+{% extends "base.html" %}
+{% block title %}總覽 — 天氣智慧儀表板{% endblock %}
+{% block content %}
+<h1>三城市近 30 天總覽</h1>
+<p>
+  資料來源：<code>data/weather_course.db</code> 的 <code>daily_weather</code> 表
+  （真實 Open-Meteo 資料，由 stage3 爬蟲或 <code>stage6_system/pipeline/update_data.py</code> 寫入）。
+  折線為溫度（左軸），長條為降雨量（右軸）。
+</p>
+
+<div id="overview-empty" class="empty-state" style="display:none;">
+  目前資料庫沒有天氣資料。請先執行：
+  <code>venv/bin/python -m stage6_system.pipeline.bootstrap</code>
+</div>
+
+<div class="chart-grid">
+  <div class="chart-card">
+    <h3>台北</h3>
+    <canvas id="chart-taipei" height="220"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>台中</h3>
+    <canvas id="chart-taichung" height="220"></canvas>
+  </div>
+  <div class="chart-card">
+    <h3>高雄</h3>
+    <canvas id="chart-kaohsiung" height="220"></canvas>
+  </div>
+</div>
+
+<script>
+const overviewData = {{ data_json | safe }};
+let anyData = false;
+
+for (const city of Object.keys(overviewData)) {
+  const rows = overviewData[city];
+  const canvas = document.getElementById(`chart-${city}`);
+  if (!canvas || rows.length === 0) continue;
+  anyData = true;
+  new Chart(canvas, {
+    data: {
+      labels: rows.map(r => r.date),
+      datasets: [
+        {
+          type: 'line',
+          label: '最高溫 (°C)',
+          data: rows.map(r => r.temp_max),
+          borderColor: '#c0392b',
+          backgroundColor: '#c0392b',
+          yAxisID: 'y',
+          tension: 0.25,
+        },
+        {
+          type: 'line',
+          label: '最低溫 (°C)',
+          data: rows.map(r => r.temp_min),
+          borderColor: '#4472c4',
+          backgroundColor: '#4472c4',
+          yAxisID: 'y',
+          tension: 0.25,
+        },
+        {
+          type: 'bar',
+          label: '降雨量 (mm)',
+          data: rows.map(r => r.precipitation_mm),
+          backgroundColor: 'rgba(47, 72, 88, 0.35)',
+          yAxisID: 'y1',
+        },
+      ],
+    },
+    options: {
+      responsive: true,
+      interaction: { mode: 'index', intersect: false },
+      scales: {
+        y: { type: 'linear', position: 'left', title: { display: true, text: '溫度 (°C)' } },
+        y1: {
+          type: 'linear', position: 'right', title: { display: true, text: '降雨量 (mm)' },
+          grid: { drawOnChartArea: false }, beginAtZero: true,
+        },
+      },
+    },
+  });
+}
+
+if (!anyData) {
+  document.getElementById('overview-empty').style.display = 'block';
+}
+</script>
+{% endblock %}
