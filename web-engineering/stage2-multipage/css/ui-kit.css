@@ -1,0 +1,373 @@
+/*
+ * ui-kit.css — BrewGo 自建輕量 UI 套件
+ *
+ * 這是本階段的教學重點之一：不引入 Bootstrap 這類現成 UI 套件，
+ * 自己動手刻一套「design tokens + 元件類別」，體會現成套件解決的是什麼問題。
+ * 完整取捨討論見 docs/DESIGN_TECH.md。
+ *
+ * 使用方式：任何頁面只要引入這個檔案，就能直接用 .btn / .card / .badge
+ * 這些類別名稱組合出畫面，不需要重新定義顏色或間距。
+ */
+
+/* ========== 1. Design Tokens ========== */
+/* 所有顏色、字體、間距都集中定義在這裡。改一個變數，全站跟著變——
+   這正是「共用元件」除了 partials 之外的第二層意義：共用『設計語言』。 */
+:root {
+  /* 品牌色（對比比例已用腳本實測過，見 docs/DESIGN_TECH.md 第 1 節） */
+  --color-bg: #faf6f0;
+  --color-surface: #ffffff;
+  --color-text: #2b211a;
+  --color-text-muted: #6b5c4f;
+  --color-primary: #4b3324;
+  --color-primary-light: #6b4a33;
+  --color-accent: #9c5b2b;
+  --color-success: #2e6b40;
+  --color-error: #a13333;
+  --color-border: #e4dccf;
+
+  /* 字體：全部 system font，不用 webfont，離線可跑 */
+  --font-sans: -apple-system, BlinkMacSystemFont, "Noto Sans TC", "PingFang TC",
+    "Microsoft JhengHei", sans-serif;
+
+  /* 間距（8px 為基礎單位） */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-6: 1.5rem;
+  --space-8: 2rem;
+  --space-12: 3rem;
+  --space-16: 4rem;
+
+  /* 圓角與陰影 */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-sm: 0 1px 3px rgba(43, 33, 26, 0.08);
+  --shadow-md: 0 6px 20px rgba(43, 33, 26, 0.12);
+
+  /* 容器寬度 */
+  --container-max: 1120px;
+}
+
+/* ========== 2. Reset 與基礎排版 ========== */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth; /* 漸進增強：見 docs/DESIGN_TECH.md 跨瀏覽器一節 */
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--color-text);
+  background: var(--color-bg);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3,
+h4 {
+  color: var(--color-primary);
+  line-height: 1.35;
+  margin-top: 0;
+}
+
+a {
+  color: var(--color-accent);
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+/* 焦點樣式：優先用 :focus-visible（只在鍵盤操作時顯示外框），
+   不支援的舊瀏覽器會 fallback 回 :focus（一律顯示），degradation 是「多顯示外框」，
+   不是功能失效，屬於安全的漸進增強。 */
+a:focus,
+button:focus,
+input:focus,
+select:focus,
+textarea:focus,
+summary:focus {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+a:focus:not(:focus-visible),
+button:focus:not(:focus-visible),
+input:focus:not(:focus-visible),
+select:focus:not(:focus-visible),
+textarea:focus:not(:focus-visible),
+summary:focus:not(:focus-visible) {
+  outline: none;
+}
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid var(--color-accent);
+  outline-offset: 2px;
+}
+
+/* 跳到主內容（螢幕閱讀器 / 鍵盤使用者） */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  background: var(--color-primary);
+  color: #fff;
+  padding: var(--space-2) var(--space-4);
+  z-index: 100;
+  border-radius: 0 0 var(--radius-sm) 0;
+}
+.skip-link:focus {
+  left: 0;
+}
+
+.container {
+  max-width: var(--container-max);
+  margin: 0 auto;
+  padding: 0 var(--space-4);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* ========== 3. 按鈕 .btn ========== */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  padding: 0.7rem 1.4rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid transparent;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: none;
+  line-height: 1.2;
+}
+.btn-primary {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn-primary:hover {
+  background: var(--color-primary-light);
+}
+.btn-outline {
+  background: transparent;
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+.btn-outline:hover {
+  background: var(--color-primary);
+  color: #fff;
+}
+.btn-sm {
+  padding: 0.45rem 1rem;
+  font-size: 0.9rem;
+}
+.btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ========== 4. 卡片 .card ========== */
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+}
+.card-body {
+  padding: var(--space-6);
+}
+
+/* ========== 5. 徽章 .badge（庫存狀態、分類標籤共用） ========== */
+.badge {
+  display: inline-block;
+  padding: 0.2rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+.badge-success {
+  background: rgba(46, 107, 64, 0.12);
+  color: var(--color-success);
+}
+.badge-warning {
+  background: rgba(156, 91, 43, 0.15);
+  color: var(--color-accent);
+}
+.badge-error {
+  background: rgba(161, 51, 51, 0.12);
+  color: var(--color-error);
+}
+.badge-neutral {
+  background: var(--color-bg);
+  color: var(--color-text-muted);
+  border: 1px solid var(--color-border);
+}
+
+/* ========== 6. 表單 .form-field ========== */
+.form-field {
+  margin-bottom: var(--space-6);
+}
+.form-field label {
+  display: block;
+  font-weight: 700;
+  margin-bottom: var(--space-2);
+}
+.form-field .hint {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--color-text-muted);
+  margin-top: var(--space-1);
+}
+.form-field input[type="text"],
+.form-field input[type="email"],
+.form-field select,
+.form-field textarea {
+  width: 100%;
+  padding: 0.65rem 0.9rem;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-family: inherit;
+  font-size: 1rem;
+  background: var(--color-surface);
+  color: var(--color-text);
+}
+.form-field textarea {
+  min-height: 8rem;
+  resize: vertical;
+}
+.form-field.has-error input,
+.form-field.has-error select,
+.form-field.has-error textarea {
+  border-color: var(--color-error);
+}
+.form-field .error-message {
+  display: none;
+  color: var(--color-error);
+  font-size: 0.85rem;
+  margin-top: var(--space-1);
+}
+.form-field.has-error .error-message {
+  display: block;
+}
+.form-check {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-2);
+}
+.form-check input {
+  margin-top: 0.3rem;
+}
+
+/* ========== 7. 分類頁籤 .tabs ========== */
+.tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  list-style: none;
+  padding: 0;
+  margin: 0 0 var(--space-6);
+}
+.tab {
+  padding: 0.5rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid var(--color-border);
+  background: var(--color-surface);
+  color: var(--color-text);
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 0.95rem;
+}
+.tab:hover {
+  border-color: var(--color-accent);
+}
+.tab.active {
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+  color: #fff;
+}
+
+/* ========== 8. 麵包屑 .breadcrumb ========== */
+.breadcrumb {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  padding: 0;
+  margin: 0 0 var(--space-6);
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+.breadcrumb li:not(:last-child)::after {
+  content: "/";
+  margin-left: var(--space-2);
+  color: var(--color-border);
+}
+.breadcrumb a {
+  color: var(--color-text-muted);
+  text-decoration: underline;
+}
+.breadcrumb li[aria-current="page"] {
+  color: var(--color-text);
+  font-weight: 600;
+}
+
+/* ========== 9. Grid 工具類（清單型內容一律 grid，不做左右交錯） ========== */
+.grid {
+  display: grid;
+  gap: var(--space-6);
+}
+.grid-2 {
+  grid-template-columns: repeat(2, 1fr);
+}
+.grid-3 {
+  grid-template-columns: repeat(3, 1fr);
+}
+.grid-4 {
+  grid-template-columns: repeat(4, 1fr);
+}
+/* CSS grid 不支援的極舊瀏覽器 fallback：見 docs/DESIGN_TECH.md，
+   這裡用 @supports 偵測，退回單欄直向排列（可用、不會壞版）。 */
+@supports not (display: grid) {
+  .grid {
+    display: block;
+  }
+  .grid > * {
+    margin-bottom: var(--space-6);
+  }
+}
+@media (max-width: 900px) {
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .grid-2,
+  .grid-3,
+  .grid-4 {
+    grid-template-columns: 1fr;
+  }
+}

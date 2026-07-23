@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="陶瓷濾杯 V 型 01">
+  <rect width="240" height="240" rx="18" fill="#ffffff"/>
+  <rect x="3" y="3" width="234" height="234" rx="16" fill="none" stroke="#e4d9c8" stroke-width="3"/>
+  <path d="M76 70 L164 70 L132 190 Q120 202 108 190 Z" fill="#6b4a33"/>
+  <path d="M92 96 L148 96" stroke="#faf6f0" stroke-width="4"/>
+  <path d="M100 122 L140 122" stroke="#faf6f0" stroke-width="4"/>
+  <path d="M108 148 L132 148" stroke="#faf6f0" stroke-width="4"/>
+  <rect x="66" y="58" width="108" height="16" rx="8" fill="#4b3324"/>
+</svg>

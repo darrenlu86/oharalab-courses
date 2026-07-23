@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="開幕禮盒（綜合豆＋掛耳＋雙層杯）">
+  <rect width="240" height="240" rx="18" fill="#ffffff"/>
+  <rect x="3" y="3" width="234" height="234" rx="16" fill="none" stroke="#e4d9c8" stroke-width="3"/>
+  <rect x="60" y="104" width="120" height="96" rx="8" fill="#6b4a33"/>
+  <rect x="60" y="104" width="120" height="26" fill="#4b3324"/>
+  <rect x="110" y="104" width="20" height="96" fill="#9c5b2b"/>
+  <rect x="60" y="140" width="120" height="20" fill="#9c5b2b"/>
+  <path d="M100 104 Q84 78 108 66 Q120 84 110 104 Z" fill="#9c5b2b"/>
+  <path d="M140 104 Q156 78 132 66 Q120 84 130 104 Z" fill="#9c5b2b"/>
+</svg>

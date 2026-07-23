@@ -1,0 +1,401 @@
+/* BrewGo 後台管理 — 設計 tokens 與全站樣式。
+   跟 frontend/src/index.css 用同一組品牌色彩變數（master spec 規定的
+   --color-primary / --color-accent 等），這裡刻意「複製一份」而不是想辦法共用
+   同一支 CSS 檔案——理由跟 api/client.js 的說明一致：admin/ 是完全獨立的
+   package，不引入跨專案共用原始碼的工具鏈。
+
+   側欄用深色變體（背景用 --color-primary，前景用米白），讓後台一眼就能跟
+   前台的米白底色區分開；深色背景配米白字（--color-bg #faf6f0 on
+   --color-primary #4b3324）對比度遠超過 WCAG AA 4.5:1 門檻。 */
+
+:root {
+  --color-bg: #faf6f0;
+  --color-surface: #ffffff;
+  --color-text: #2b211a;
+  --color-primary: #4b3324;
+  --color-primary-light: #6b4a33;
+  --color-accent: #9c5b2b;
+  --color-success: #2e6b40;
+  --color-error: #a13333;
+  --color-border: #e4d9c8;
+
+  --font-family: -apple-system, 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif;
+  --radius: 12px;
+  --shadow-card: 0 2px 8px rgba(43, 33, 26, 0.08);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-family);
+  background: var(--color-bg);
+  color: var(--color-text);
+  line-height: 1.6;
+}
+
+/* ---------- 整體版型：側欄 + 內容區 ---------- */
+
+.admin-shell {
+  display: flex;
+  min-height: 100vh;
+}
+
+.admin-sidebar {
+  width: 220px;
+  flex-shrink: 0;
+  background: var(--color-primary);
+  color: var(--color-bg);
+  display: flex;
+  flex-direction: column;
+  padding: 20px 16px;
+}
+
+.admin-sidebar__brand {
+  padding: 8px 8px 24px;
+}
+
+.admin-sidebar__brand-name {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: #ffffff;
+}
+
+.admin-sidebar__nav {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.admin-nav-link {
+  display: block;
+  padding: 10px 12px;
+  border-radius: 8px;
+  color: #f0e6da;
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.admin-nav-link.is-active {
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+}
+
+.admin-sidebar__footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.18);
+  padding-top: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-sidebar__user {
+  margin: 0;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+.admin-main {
+  flex: 1;
+  padding: 32px;
+  max-width: 1200px;
+}
+
+.admin-loading {
+  padding: 40px;
+  text-align: center;
+}
+
+/* ---------- 頁首、標題 ---------- */
+
+.admin-page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-bottom: 20px;
+}
+
+.admin-page-title {
+  font-size: 1.4rem;
+  color: var(--color-primary);
+  margin: 0 0 20px;
+}
+
+.admin-page-header .admin-page-title {
+  margin-bottom: 0;
+}
+
+.admin-section {
+  margin-top: 32px;
+}
+
+.admin-section-title {
+  font-size: 1.1rem;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+}
+
+/* ---------- 數字卡（Dashboard） ---------- */
+
+.admin-stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.admin-stat-card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.admin-stat-card__label {
+  font-size: 0.8rem;
+  color: #5a4a3d;
+}
+
+.admin-stat-card__value {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--color-primary);
+}
+
+/* ---------- 表格 ---------- */
+
+.admin-table-wrap {
+  overflow-x: auto;
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 10px 14px;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.admin-table th {
+  color: var(--color-primary);
+  font-weight: 600;
+  background: var(--color-bg);
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table__actions {
+  display: flex;
+  gap: 8px;
+}
+
+.admin-muted {
+  color: #9a8a7c;
+}
+
+/* ---------- 徽章 ---------- */
+
+.admin-badge {
+  display: inline-block;
+  padding: 3px 10px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 600;
+}
+
+.admin-badge--on {
+  background: rgba(46, 107, 64, 0.12);
+  color: var(--color-success);
+}
+
+.admin-badge--off {
+  background: rgba(161, 51, 51, 0.12);
+  color: var(--color-error);
+}
+
+/* ---------- 按鈕 ---------- */
+
+.admin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 18px;
+  border-radius: 8px;
+  border: 1px solid var(--color-primary);
+  background: var(--color-primary);
+  color: #ffffff;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.admin-btn--primary {
+  background: var(--color-accent);
+  border-color: var(--color-accent);
+}
+
+.admin-btn--ghost {
+  background: transparent;
+  color: var(--color-primary);
+}
+
+.admin-sidebar .admin-btn--ghost {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.admin-btn--small {
+  padding: 5px 12px;
+  font-size: 0.8rem;
+}
+
+.admin-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+/* ---------- 表單 ---------- */
+
+.admin-form {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.admin-form-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+}
+
+.admin-form-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.admin-form-field--wide {
+  grid-column: 1 / -1;
+}
+
+.admin-form-field--inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 8px;
+}
+
+.admin-form-field label {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.admin-form-field input,
+.admin-form-field select {
+  padding: 8px 10px;
+  border-radius: 8px;
+  border: 1px solid var(--color-border);
+  font-family: inherit;
+  font-size: 0.9rem;
+}
+
+.admin-inline-input {
+  width: 90px;
+  padding: 4px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--color-border);
+  font-family: inherit;
+}
+
+.admin-form-error {
+  color: var(--color-error);
+  font-weight: 600;
+}
+
+.admin-empty {
+  padding: 24px;
+  text-align: center;
+  color: #5a4a3d;
+}
+
+/* ---------- 登入頁 ---------- */
+
+.admin-login {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-primary);
+  padding: 20px;
+}
+
+.admin-login__card {
+  background: var(--color-surface);
+  border-radius: var(--radius);
+  padding: 32px;
+  width: 100%;
+  max-width: 380px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  box-shadow: var(--shadow-card);
+}
+
+.admin-login__title {
+  margin: 0;
+  font-size: 1.2rem;
+  color: var(--color-primary);
+}
+
+.admin-login__hint {
+  margin: 0;
+  font-size: 0.8rem;
+  color: #5a4a3d;
+}
+
+/* ---------- Responsive ---------- */
+
+@media (max-width: 720px) {
+  .admin-shell {
+    flex-direction: column;
+  }
+
+  .admin-sidebar {
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+
+  .admin-sidebar__nav {
+    flex-direction: row;
+    flex-wrap: wrap;
+  }
+
+  .admin-main {
+    padding: 20px;
+  }
+}

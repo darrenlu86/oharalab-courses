@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="BrewGo 沖沖咖啡">
+  <rect width="64" height="64" rx="12" fill="#4b3324"/>
+  <path d="M16 30 L44 30 L42 46 Q41 52 35 52 L25 52 Q19 52 18 46 Z" fill="#faf6f0"/>
+  <path d="M44 32 Q54 32 54 40 Q54 47 45 46" fill="none" stroke="#faf6f0" stroke-width="4"/>
+  <path d="M24 24 Q22 18 26 14" fill="none" stroke="#9c5b2b" stroke-width="3" stroke-linecap="round"/>
+  <path d="M32 24 Q30 18 34 14" fill="none" stroke="#9c5b2b" stroke-width="3" stroke-linecap="round"/>
+  <path d="M40 24 Q38 18 42 14" fill="none" stroke="#9c5b2b" stroke-width="3" stroke-linecap="round"/>
+</svg>

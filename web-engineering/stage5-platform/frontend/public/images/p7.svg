@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="手沖細口壺 600ml">
+  <rect width="240" height="240" rx="18" fill="#ffffff"/>
+  <rect x="3" y="3" width="234" height="234" rx="16" fill="none" stroke="#e4d9c8" stroke-width="3"/>
+  <path d="M70 150 Q70 190 110 196 L138 196 Q172 190 172 150 L172 110 L70 110 Z" fill="#6b4a33"/>
+  <rect x="66" y="100" width="112" height="16" rx="8" fill="#4b3324"/>
+  <path d="M172 128 Q206 120 202 96 Q198 78 176 84" fill="none" stroke="#9c5b2b" stroke-width="10" stroke-linecap="round"/>
+  <path d="M78 118 Q54 128 60 156 Q64 176 84 178" fill="none" stroke="#9c5b2b" stroke-width="10" stroke-linecap="round"/>
+  <rect x="112" y="76" width="24" height="26" rx="6" fill="#4b3324"/>
+</svg>

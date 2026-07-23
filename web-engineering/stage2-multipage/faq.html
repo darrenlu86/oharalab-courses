@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>常見問題｜BrewGo 沖沖咖啡</title>
+<meta name="description" content="BrewGo 沖沖咖啡常見問題：線上購買、掛耳包保存、庫存徽章說明與門市內用資訊。">
+<link rel="canonical" href="https://www.brewgo-demo.example/faq.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="BrewGo 沖沖咖啡">
+<meta property="og:title" content="常見問題｜BrewGo 沖沖咖啡">
+<meta property="og:description" content="線上購買、掛耳包保存、庫存徽章說明與門市內用資訊。">
+<meta property="og:image" content="images/og-image.svg">
+<meta property="og:url" content="https://www.brewgo-demo.example/faq.html">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" type="image/svg+xml" href="images/favicon.svg">
+<link rel="stylesheet" href="css/ui-kit.css">
+<link rel="stylesheet" href="css/site.css">
+</head>
+<body>
+<div data-include="partials/header.html"></div>
+
+<main id="main-content">
+  <div class="container page-header">
+    <ol class="breadcrumb">
+      <li><a href="index.html">首頁</a></li>
+      <li aria-current="page">常見問題</li>
+    </ol>
+    <h1>常見問題</h1>
+  </div>
+
+  <div class="container">
+    <div class="faq-list">
+
+      <details class="faq-item">
+        <summary>現在可以在網站上直接下單購買嗎？</summary>
+        <p>目前（多頁式官網階段）還不行，型錄只是靜態展示。線上購物車與結帳功能會在課程 stage4、stage5 陸續加入，屆時會有真正能運作的購物流程。</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>掛耳包的保存期限多久？</summary>
+        <p>一般未拆封保存期限為製造日起 12 個月，建議開封後盡快沖泡完畢，並存放於陰涼乾燥處，避免潮濕與陽光直射。</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>「僅剩 N 件」與「補貨中」是什麼意思？</summary>
+        <p>「僅剩 N 件」代表庫存偏低（本站示範為深焙醇厚掛耳包僅剩 3 件），「補貨中」代表目前庫存為 0（本站示範為冷萃咖啡瓶）。兩者都是本課程用來示範庫存徽章的教學情境，型錄上的庫存數字不會即時變動。</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>兩間門市都可以內用手沖嗎？</summary>
+        <p>台北大安店與台中西區店皆提供內用手沖體驗，詳細座位數請看<a href="stores.html">門市資訊</a>頁，實際供應內容仍以現場公告為準。</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>為什麼型錄上只有 3 項商品有「查看詳情」按鈕？</summary>
+        <p>這是刻意的教學安排：本階段示範 3 個完整的商品詳情頁（耶加雪菲豆、耶加雪菲掛耳包、開幕禮盒），其餘 9 項商品目前只在型錄呈現基本資訊。原因是每個詳情頁都是獨立的 html 檔案，12 個都做的話，之後型錄資料一有變動就要手動同步 12 個檔案——這正是 <code>docs/ARCHITECTURE.md</code> 要討論的維護痛點，也是後面階段要接資料庫解決的問題。</p>
+      </details>
+
+      <details class="faq-item">
+        <summary>這個網站在手機上看起來會不一樣嗎？</summary>
+        <p>會。版面採用響應式設計（RWD），寬度小於 820px 會切換成漢堡選單，商品卡片也會從四欄逐步收成單欄，詳細技術作法見 <code>docs/DESIGN_TECH.md</code>。</p>
+      </details>
+
+    </div>
+  </div>
+</main>
+
+<div data-include="partials/footer.html"></div>
+<script src="js/include.js"></script>
+<script src="js/site.js"></script>
+</body>
+</html>

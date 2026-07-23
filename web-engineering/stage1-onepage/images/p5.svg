@@ -1,0 +1,23 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img">
+  <title>耶加雪菲掛耳包 10 入插圖</title>
+  <rect width="400" height="300" fill="#FBEFE0"/>
+
+  <!-- 掛耳包外盒 -->
+  <rect x="120" y="96" width="160" height="140" rx="10" fill="#ffffff" stroke="#9C5B2B" stroke-width="4"/>
+  <rect x="120" y="96" width="160" height="34" rx="10" fill="#9C5B2B"/>
+  <text x="200" y="120" font-family="-apple-system, 'Noto Sans TC', sans-serif" font-size="14" fill="#ffffff" text-anchor="middle">掛耳包 10 入</text>
+
+  <!-- 單片掛耳包示意 -->
+  <g>
+    <path d="M160 150 h80 v56 q0 10 -10 10 h-60 q-10 0 -10 -10 Z" fill="#F2E2C7" stroke="#9C5B2B" stroke-width="2"/>
+    <path d="M168 150 q32 -18 64 0" fill="none" stroke="#9C5B2B" stroke-width="3"/>
+    <rect x="176" y="168" width="48" height="30" rx="4" fill="#ffffff" stroke="#C9A06C" stroke-width="2"/>
+  </g>
+
+  <!-- 熱氣 -->
+  <path d="M182 138 q-4 -10 0 -18" fill="none" stroke="#9c5b2b" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M200 138 q-4 -10 0 -18" fill="none" stroke="#9c5b2b" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+  <path d="M218 138 q-4 -10 0 -18" fill="none" stroke="#9c5b2b" stroke-width="3" stroke-linecap="round" opacity="0.7"/>
+
+  <text x="200" y="230" font-family="-apple-system, 'Noto Sans TC', sans-serif" font-size="12" fill="#4b3324" text-anchor="middle">辦公室手沖首選</text>
+</svg>

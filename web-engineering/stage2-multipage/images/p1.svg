@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img" aria-label="耶加雪菲淺焙單品豆插畫">
+<title>耶加雪菲淺焙單品豆插畫</title>
+<rect width="100%" height="100%" rx="16" fill="#faf6f0"/>
+
+<g transform="translate(160,144) scale(1.0)">
+  <ellipse cx="0" cy="0" rx="34" ry="50" fill="#a9764c" transform="rotate(20)"/>
+  <path d="M -2 -46 Q 10 0 -2 46" stroke="#faf6f0" stroke-width="5" fill="none" transform="rotate(20)"/>
+</g>
+<g transform="translate(210,164) scale(0.9)">
+  <ellipse cx="0" cy="0" rx="34" ry="50" fill="#a9764c" transform="rotate(20)"/>
+  <path d="M -2 -46 Q 10 0 -2 46" stroke="#faf6f0" stroke-width="5" fill="none" transform="rotate(20)"/>
+</g>
+<g transform="translate(244,130) scale(0.75)">
+  <ellipse cx="0" cy="0" rx="34" ry="50" fill="#a9764c" transform="rotate(20)"/>
+  <path d="M -2 -46 Q 10 0 -2 46" stroke="#faf6f0" stroke-width="5" fill="none" transform="rotate(20)"/>
+</g>
+</svg>

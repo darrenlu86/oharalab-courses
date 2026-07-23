@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 240 240" role="img" aria-label="手搖磨豆機 不鏽鋼刀盤">
+  <rect width="240" height="240" rx="18" fill="#ffffff"/>
+  <rect x="3" y="3" width="234" height="234" rx="16" fill="none" stroke="#e4d9c8" stroke-width="3"/>
+  <rect x="82" y="86" width="76" height="110" rx="10" fill="#6b4a33"/>
+  <rect x="94" y="70" width="52" height="20" rx="6" fill="#4b3324"/>
+  <circle cx="120" cy="56" r="10" fill="#9c5b2b"/>
+  <rect x="116" y="36" width="8" height="24" rx="4" fill="#9c5b2b"/>
+  <rect x="92" y="150" width="56" height="10" rx="4" fill="#faf6f0" opacity="0.85"/>
+</svg>

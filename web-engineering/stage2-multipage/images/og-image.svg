@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" role="img" aria-label="BrewGo 沖沖咖啡 社群分享圖">
+<title>BrewGo 沖沖咖啡</title>
+<rect width="1200" height="630" fill="#4b3324"/>
+<g transform="translate(430,210)">
+  <path d="M2 14 L2 34 Q2 44 14 44 L30 44 Q42 44 42 34 L42 14 Z" fill="#faf6f0" transform="scale(3.2)"/>
+  <path d="M42 18 Q56 16 54 28 Q52 38 40 34" fill="none" stroke="#faf6f0" stroke-width="5" stroke-linecap="round" transform="scale(3.2)"/>
+</g>
+<text x="600" y="470" text-anchor="middle" font-family="-apple-system, 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="64" font-weight="700" fill="#faf6f0">BrewGo 沖沖咖啡</text>
+<text x="600" y="520" text-anchor="middle" font-family="-apple-system, 'Noto Sans TC', 'PingFang TC', 'Microsoft JhengHei', sans-serif" font-size="30" fill="#faf6f0" opacity="0.85">每天沖一杯好咖啡</text>
+</svg>
