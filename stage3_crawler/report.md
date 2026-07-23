@@ -29,7 +29,7 @@ flowchart LR
     S3 --> C3
     S4 --> C4
     S5 --> C5
-    HC -.被全部 crawl_*.py 共用.-> C1
+    HC -.-> C1
     HC -.-> C2
     HC -.-> C3
     HC -.-> C4

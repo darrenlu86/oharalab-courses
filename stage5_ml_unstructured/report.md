@@ -107,7 +107,7 @@ $ venv/bin/python -m stage5_ml_unstructured.predict_text --text "靠北喔今天
 
 混淆矩陣：`fig02_digits_confusion_matrix.png`。錯分樣本圖（13 筆中的
 前 12 筆）：`fig03_digits_misclassified_samples.png`——常見誤判是
-「8 認成 1」（3 筆）、「8 認成 7」——8x8 低解析度下，某些手寫數字的
+「8 認成 1」（4 筆）——8x8 低解析度下，某些手寫數字的
 筆畫確實容易混淆，肉眼看錯分樣本圖也能理解模型為什麼會猜錯。
 
 ## 誠實結論

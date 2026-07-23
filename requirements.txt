@@ -19,4 +19,3 @@ nbclient==0.11.0          # stage2/測試：headless 執行 notebook，驗證全
 nbformat==5.10.4          # stage2：讀寫 .ipynb 檔案格式，nbclient 的必要依賴
 pytest==9.1.1             # tests/：全 repo 單一測試入口
 httpx==0.28.1             # sandbox_site/stage6：FastAPI TestClient 依賴、測試用同步/非同步 HTTP 用戶端
-python-dotenv==1.2.2      # stage1：讀取 mock AI API 金鑰等環境變數，避免寫死進版控
