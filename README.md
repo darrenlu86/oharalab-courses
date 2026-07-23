@@ -150,6 +150,21 @@ python scripts/init_db.py --reset
 
 > 注意：`--reset` 只在 `DB_BACKEND=sqlite` 時生效（會直接刪除本機的 `.db` 檔案）；`DB_BACKEND=supabase` 時腳本不會、也不能幫你清空雲端資料庫，需要清空請自己到 Supabase 後台操作。
 
+### 商品圖片怎麼來的？如何換成真實商品照片？
+
+目前的商品圖是 `frontend/images/products/p1.svg`～`p10.svg` 這 10 張手繪 SVG 插圖（placeholder）。
+
+**為什麼用本地 SVG 而不是外部圖庫網址**：圖片跟著專案走，你 clone 下來斷網也能完整跑起來；不依賴任何第三方圖片服務（這類免費服務常常有一天就停了）；也完全沒有版權問題。
+
+圖片路徑**不是寫死在前端**，而是存在資料庫的 `products.image_url` 欄位（例如 `/images/products/p1.svg`），由 API 回傳給前端渲染——所以「換圖」其實是「換檔案＋改資料」兩步：
+
+1. **換檔案**：把你的商品照片（`.jpg`／`.png`／`.webp` 都可以，建議寬度 800px 左右、檔案 200KB 以內）放進 `frontend/images/products/`。
+2. **改資料**：讓 `image_url` 指向新檔案。兩種做法擇一：
+   - 改 `backend/app/db/seed_products.json` 裡對應商品的 `"image_url"`（例如改成 `"/images/products/salmon.jpg"`），再跑 `python scripts/init_db.py --reset` 重建（注意：會清掉既有帳號與訂單）；
+   - 不想重建資料庫，就直接更新該筆商品：`sqlite3 data/meowshop.db "UPDATE products SET image_url='/images/products/salmon.jpg' WHERE id=1;"`
+
+> 注意：真實商品照請用你自己拍的，或確認授權可商用的免費圖庫（如 Unsplash、Pexels）；別直接抓別人網站的圖。
+
 ## API 測試指南
 
 以下示範一個完整的購物流程，逐支呼叫本專案全部 14 支 API（14 支端點清單見 `docs/PRD.md` 第 4 節）。指令假設伺服器已在 `http://localhost:8000` 啟動。回應內容以下方範例為準——實際的 `id`／`created_at` 會依你自己的執行結果而不同。
