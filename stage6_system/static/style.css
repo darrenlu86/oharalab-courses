@@ -1,0 +1,189 @@
+/* 天氣智慧儀表板（stage6_system）樣式表。零 JS 框架（僅 vendored Chart.js）、零 emoji，grid 排版。 */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: -apple-system, "PingFang TC", "Microsoft JhengHei", "Noto Sans CJK TC", sans-serif;
+  color: #1f2933;
+  background: #f5f6f7;
+  line-height: 1.6;
+}
+
+header.site-header {
+  background: #2f4858;
+  color: #fff;
+  padding: 1rem 1.5rem;
+}
+
+header.site-header a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+nav.site-nav {
+  background: #eef2f3;
+  padding: 0.6rem 1.5rem;
+  border-bottom: 1px solid #d3dade;
+}
+
+nav.site-nav a {
+  margin-right: 1rem;
+  color: #2f4858;
+  text-decoration: none;
+  font-size: 0.95rem;
+}
+
+nav.site-nav a:hover {
+  text-decoration: underline;
+}
+
+main {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: 1.5rem;
+}
+
+.banner {
+  background: #fff6e5;
+  border: 1px solid #e8c877;
+  padding: 0.8rem 1rem;
+  margin-bottom: 1.2rem;
+  font-size: 0.95rem;
+}
+
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+}
+
+.stat-card {
+  background: #fff;
+  border: 1px solid #d3dade;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.stat-card .label {
+  font-size: 0.85rem;
+  color: #52606d;
+}
+
+.stat-card .value {
+  font-size: 1.6rem;
+  font-weight: bold;
+  margin-top: 0.25rem;
+}
+
+.stat-card.positive .value {
+  color: #1b6e3c;
+}
+
+.stat-card.negative .value {
+  color: #b3401f;
+}
+
+.chart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin: 1.5rem 0;
+}
+
+.chart-card {
+  background: #fff;
+  border: 1px solid #d3dade;
+  border-radius: 6px;
+  padding: 1rem;
+}
+
+.chart-card h3 {
+  margin-top: 0;
+  font-size: 1rem;
+}
+
+.chart-card canvas {
+  max-width: 100%;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 1rem 0;
+  background: #fff;
+}
+
+table caption {
+  text-align: left;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+}
+
+th, td {
+  border: 1px solid #d3dade;
+  padding: 0.45rem 0.6rem;
+  text-align: left;
+  font-size: 0.9rem;
+}
+
+th {
+  background: #e4ebec;
+}
+
+tbody tr:nth-child(even) {
+  background: #fafbfb;
+}
+
+.label-positive {
+  color: #1b6e3c;
+  font-weight: bold;
+}
+
+.label-negative {
+  color: #b3401f;
+  font-weight: bold;
+}
+
+form.inline-form {
+  margin: 1rem 0;
+}
+
+button.primary-button {
+  background: #2f4858;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.6rem 1.2rem;
+  font-size: 0.95rem;
+  cursor: pointer;
+}
+
+button.primary-button:hover {
+  background: #233945;
+}
+
+footer.site-footer {
+  border-top: 1px solid #d3dade;
+  padding: 1rem 1.5rem;
+  font-size: 0.85rem;
+  color: #52606d;
+  margin-top: 2rem;
+}
+
+footer.site-footer a {
+  color: #52606d;
+}
+
+.empty-state {
+  background: #fff;
+  border: 1px dashed #9aa5aa;
+  border-radius: 6px;
+  padding: 1.5rem;
+  text-align: center;
+  color: #52606d;
+}

@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block title %}明日降雨預測 — 天氣智慧儀表板{% endblock %}
+{% block content %}
+<h1>明日降雨預測</h1>
+<p>
+  用 <code>stage4_ml_structured</code> 訓練好的 RandomForest 模型
+  （降雨門檻 precipitation_sum >= {{ rain_threshold }}mm），對每個城市最新一天的特徵預測「明天」是否下雨。
+  按下按鈕會重新計算並寫入 <code>predictions</code> 表（同一天重複預測會覆寫，不會累積重複列）。
+</p>
+
+{% if just_predicted %}
+<div class="banner">已重新預測並寫入 predictions 表。</div>
+{% endif %}
+
+<form class="inline-form" method="post" action="/predict">
+  <button class="primary-button" type="submit">重新預測</button>
+</form>
+
+{% if predictions %}
+<div class="stat-grid">
+  {% for p in predictions %}
+  <div class="stat-card {{ 'negative' if p.predicted_label else 'positive' }}">
+    <div class="label">{{ city_names.get(p.city, p.city) }}　明日（{{ p.target_date }}）</div>
+    <div class="value">{{ '%.0f'|format(p.rain_prob * 100) }}%</div>
+    <div class="label">
+      預測：{{ '會下雨' if p.predicted_label else '不會下雨' }}
+      {% if p.actual_label is not none %}
+        ／實際：{{ '下雨' if p.actual_label else '不下雨' }}
+        （{{ '預測正確' if p.actual_label == p.predicted_label else '預測錯誤' }}）
+      {% else %}
+        ／實際：尚未回填（跑
+        <code>stage6_system/pipeline/backfill_actuals.py</code>）
+      {% endif %}
+    </div>
+  </div>
+  {% endfor %}
+</div>
+{% else %}
+<div class="empty-state">尚無預測紀錄，按上方「重新預測」產生第一筆。</div>
+{% endif %}
+{% endblock %}

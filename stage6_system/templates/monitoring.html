@@ -1,0 +1,99 @@
+{% extends "base.html" %}
+{% block title %}模型監測 — 天氣智慧儀表板{% endblock %}
+{% block content %}
+<h1>模型監測</h1>
+<p>
+  <code>predictions</code> 表記錄每次 <code>/predict</code> 產生的預測；
+  跑過 <code>stage6_system/pipeline/backfill_actuals.py</code> 之後，
+  等到「明天」真的過去、<code>daily_weather</code> 有了那天的實際資料，
+  這裡才會看到「實際」欄位與準確率——監測本來就需要時間才能累積，不是
+  一次呼叫就有結果。
+</p>
+
+<div class="stat-grid">
+  <div class="stat-card">
+    <div class="label">總預測筆數</div>
+    <div class="value">{{ summary.total }}</div>
+  </div>
+  <div class="stat-card">
+    <div class="label">已回填筆數</div>
+    <div class="value">{{ summary.backfilled_count }}</div>
+  </div>
+  <div class="stat-card {{ 'positive' if summary.accuracy is not none and summary.accuracy >= 0.5 else 'negative' if summary.accuracy is not none else '' }}">
+    <div class="label">目前準確率</div>
+    <div class="value">
+      {% if summary.accuracy is not none %}{{ '%.1f'|format(summary.accuracy * 100) }}%{% else %}尚無資料{% endif %}
+    </div>
+  </div>
+</div>
+
+{% if summary.trend %}
+<div class="chart-grid">
+  <div class="chart-card">
+    <h3>累計準確率趨勢</h3>
+    <canvas id="chart-trend" height="220"></canvas>
+  </div>
+</div>
+<script>
+new Chart(document.getElementById('chart-trend'), {
+  type: 'line',
+  data: {
+    labels: {{ summary.trend | map(attribute='target_date') | list | tojson }},
+    datasets: [{
+      label: '累計準確率',
+      data: {{ summary.trend | map(attribute='cumulative_accuracy') | list | tojson }},
+      borderColor: '#2f4858',
+      backgroundColor: '#2f4858',
+      tension: 0.2,
+    }],
+  },
+  options: {
+    responsive: true,
+    scales: { y: { min: 0, max: 1, title: { display: true, text: '準確率' } } },
+  },
+});
+</script>
+{% endif %}
+
+{% if summary.records %}
+<h2>全部預測紀錄</h2>
+<table>
+  <thead>
+    <tr>
+      <th>city</th>
+      <th>target_date</th>
+      <th>rain_prob</th>
+      <th>predicted_label</th>
+      <th>actual_label</th>
+      <th>結果</th>
+      <th>model_version</th>
+      <th>created_at</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for r in summary.records %}
+    <tr>
+      <td>{{ city_names.get(r.city, r.city) }}</td>
+      <td>{{ r.target_date }}</td>
+      <td>{{ '%.0f'|format(r.rain_prob * 100) }}%</td>
+      <td>{{ '會下雨' if r.predicted_label else '不會下雨' }}</td>
+      <td>
+        {% if r.actual_label is not none %}{{ '下雨' if r.actual_label else '不下雨' }}{% else %}尚未回填{% endif %}
+      </td>
+      <td>
+        {% if r.actual_label is not none %}
+          {{ '正確' if r.actual_label == r.predicted_label else '錯誤' }}
+        {% else %}—{% endif %}
+      </td>
+      <td>{{ r.model_version }}</td>
+      <td>{{ r.created_at }}</td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<div class="empty-state">
+  尚無預測紀錄。先到 <a href="/predict">明日降雨預測</a> 頁面按「重新預測」產生資料。
+</div>
+{% endif %}
+{% endblock %}
