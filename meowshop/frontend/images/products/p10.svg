@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img">
+  <title>智能滾動逗貓球插圖</title>
+  <rect width="400" height="300" fill="#F3E7D8"/>
+
+  <!-- 圓球本體 -->
+  <circle cx="200" cy="160" r="66" fill="#E8853D"/>
+  <path d="M140 150 a66 66 0 0 1 120 0" fill="#F2A74E" opacity="0.6"/>
+
+  <!-- 科技感圓點軌跡 -->
+  <g fill="none" stroke="#3E2F25" stroke-width="2" opacity="0.5">
+    <circle cx="200" cy="160" r="40"/>
+    <circle cx="200" cy="160" r="24"/>
+  </g>
+  <g fill="#3E2F25">
+    <circle cx="200" cy="120" r="3.4"/>
+    <circle cx="234" cy="160" r="3.4"/>
+    <circle cx="200" cy="200" r="3.4"/>
+    <circle cx="166" cy="160" r="3.4"/>
+  </g>
+  <!-- 指示燈 -->
+  <circle cx="200" cy="160" r="7" fill="#7BAE7F"/>
+  <circle cx="200" cy="160" r="3" fill="#FFFFFF"/>
+
+  <!-- 滾動動態線 -->
+  <path d="M112 190 q20 14 40 2M104 210 q26 16 50 2" stroke="#C96F2E" stroke-width="3" fill="none" stroke-linecap="round" opacity="0.7"/>
+
+  <!-- 貓掌拍打 -->
+  <g fill="#3E2F25">
+    <ellipse cx="292" cy="120" rx="24" ry="18" transform="rotate(-25 292 120)"/>
+    <ellipse cx="278" cy="102" rx="7" ry="9" transform="rotate(-15 278 102)"/>
+    <ellipse cx="294" cy="96" rx="7" ry="9"/>
+    <ellipse cx="310" cy="104" rx="7" ry="9" transform="rotate(15 310 104)"/>
+  </g>
+
+  <!-- 地面陰影 -->
+  <ellipse cx="200" cy="236" rx="80" ry="10" fill="#E0CBA8" opacity="0.6"/>
+</svg>

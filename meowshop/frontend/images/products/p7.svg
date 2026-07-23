@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img">
+  <title>陶瓷斜口貓碗插圖</title>
+  <rect width="400" height="300" fill="#F3E7D8"/>
+
+  <!-- 碗身（斜口設計） -->
+  <path d="M110 150 Q200 130 290 150 L272 210 Q200 226 128 210 Z" fill="#FFFFFF" stroke="#E0CBA8" stroke-width="3"/>
+  <ellipse cx="200" cy="150" rx="90" ry="20" fill="#FBEEDF" stroke="#E0CBA8" stroke-width="3"/>
+
+  <!-- 碗內飼料 -->
+  <g fill="#E8853D">
+    <circle cx="176" cy="146" r="6"/>
+    <circle cx="194" cy="152" r="6.4"/>
+    <circle cx="212" cy="144" r="5.6"/>
+    <circle cx="228" cy="150" r="6"/>
+    <circle cx="188" cy="158" r="5"/>
+    <circle cx="206" cy="158" r="5"/>
+  </g>
+
+  <!-- 高光反光 -->
+  <path d="M130 156 Q140 172 128 190" stroke="#FFFFFF" stroke-width="5" fill="none" stroke-linecap="round" opacity="0.8"/>
+
+  <!-- 底座 -->
+  <path d="M148 210 L138 232 Q200 246 262 232 L252 210 Z" fill="#E8C79A"/>
+
+  <!-- 貓臉倒影暗示 -->
+  <g fill="#3E2F25" opacity="0.12">
+    <circle cx="200" cy="150" r="24"/>
+  </g>
+
+  <!-- 爪印 -->
+  <g fill="#C96F2E" opacity="0.85">
+    <ellipse cx="310" cy="90" rx="7" ry="9"/>
+    <ellipse cx="298" cy="76" rx="3.4" ry="4.4"/>
+    <ellipse cx="310" cy="72" rx="3.4" ry="4.4"/>
+    <ellipse cx="322" cy="76" rx="3.4" ry="4.4"/>
+  </g>
+</svg>

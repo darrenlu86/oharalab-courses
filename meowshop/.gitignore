@@ -1,0 +1,37 @@
+# --- Python ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.eggs/
+
+# --- 虛擬環境 ---
+.venv/
+venv/
+env/
+
+# --- 測試/工具快取 ---
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.coverage
+htmlcov/
+
+# --- 環境變數（含機密資訊，絕不能進版控） ---
+.env
+backend/.env
+
+# --- 本機資料庫檔案（seed 後每人本機資料不同，不進版控） ---
+backend/data/*.db
+backend/data/*.db-journal
+backend/data/*.sqlite
+backend/data/*.sqlite3
+# 但 data/ 資料夾本身要保留（用 .gitkeep 佔位），不然空資料夾 git 不會追蹤
+!backend/data/.gitkeep
+
+# --- macOS ---
+.DS_Store
+
+# --- 編輯器 ---
+.vscode/
+.idea/

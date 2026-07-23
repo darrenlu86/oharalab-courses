@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img">
+  <title>洞穴款貓睡窩插圖</title>
+  <rect width="400" height="300" fill="#F3E7D8"/>
+
+  <!-- 洞穴窩身 -->
+  <path d="M96 230 Q96 108 200 100 Q304 108 304 230 Z" fill="#E8853D"/>
+  <path d="M96 230 Q96 130 200 122 Q304 130 304 230 Z" fill="#C96F2E" opacity="0.35"/>
+
+  <!-- 洞口 -->
+  <ellipse cx="200" cy="216" rx="70" ry="54" fill="#3E2F25"/>
+  <ellipse cx="200" cy="222" rx="52" ry="40" fill="#5B4636"/>
+
+  <!-- 睡覺的貓尾巴從洞口探出 -->
+  <path d="M232 244 C 268 250 280 224 262 206 C 250 196 238 206 246 218"
+        fill="none" stroke="#3E2F25" stroke-width="16" stroke-linecap="round"/>
+
+  <!-- 貓耳朵微微露出 -->
+  <path d="M176 190 L168 172 L190 184 Z" fill="#3E2F25"/>
+  <path d="M204 186 L214 168 L222 184 Z" fill="#3E2F25"/>
+
+  <!-- 縫線紋理 -->
+  <path d="M110 224 Q200 250 290 224" stroke="#C96F2E" stroke-width="2" stroke-dasharray="5 6" fill="none"/>
+
+  <!-- 底部絨毛陰影 -->
+  <ellipse cx="200" cy="256" rx="130" ry="14" fill="#E0CBA8" opacity="0.6"/>
+</svg>

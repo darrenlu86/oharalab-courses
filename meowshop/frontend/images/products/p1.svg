@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img">
+  <title>鮭魚口味貓糧插圖</title>
+  <rect width="400" height="300" fill="#FDEBD9"/>
+
+  <!-- 站立式貓糧袋 -->
+  <path d="M140 90 L260 90 L272 260 Q200 274 128 260 Z" fill="#F2A74E"/>
+  <path d="M140 90 L152 70 L248 70 L260 90 Z" fill="#C96F2E"/>
+  <rect x="176" y="58" width="48" height="16" rx="6" fill="#C96F2E"/>
+
+  <!-- 標籤 -->
+  <rect x="152" y="128" width="96" height="84" rx="12" fill="#FFF7EE"/>
+
+  <!-- 鮭魚圖案 -->
+  <g>
+    <ellipse cx="196" cy="168" rx="30" ry="17" fill="#E8853D"/>
+    <path d="M226 168 L246 154 L246 182 Z" fill="#C96F2E"/>
+    <circle cx="180" cy="164" r="2.6" fill="#3E2F25"/>
+    <path d="M172 168 q10 6 20 0" stroke="#C96F2E" stroke-width="2" fill="none" stroke-linecap="round"/>
+  </g>
+
+  <!-- 爪印裝飾 -->
+  <g fill="#C96F2E">
+    <ellipse cx="200" cy="196" rx="6" ry="7.5"/>
+    <ellipse cx="189" cy="187" rx="3" ry="4"/>
+    <ellipse cx="200" cy="184" rx="3" ry="4"/>
+    <ellipse cx="211" cy="187" rx="3" ry="4"/>
+  </g>
+
+  <!-- 底部散落的糧粒 -->
+  <g fill="#C96F2E">
+    <circle cx="110" cy="248" r="5"/>
+    <circle cx="126" cy="256" r="5"/>
+    <circle cx="96" cy="260" r="4"/>
+  </g>
+</svg>

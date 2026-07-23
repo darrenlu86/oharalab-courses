@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 560" role="img">
+  <title>一隻慵懶的貓咪窩在陽光灑落的窗邊插畫</title>
+  <defs>
+    <linearGradient id="heroBg" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#FFF3E2"/>
+      <stop offset="1" stop-color="#FFE3C2"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="560" rx="28" fill="url(#heroBg)"/>
+
+  <!-- 陽光 -->
+  <circle cx="650" cy="115" r="72" fill="#FBD48A" opacity="0.5"/>
+  <circle cx="650" cy="115" r="46" fill="#F7C465" opacity="0.75"/>
+
+  <!-- 窗拱 -->
+  <path d="M120 490 V225 a180 180 0 0 1 360 0 V490 Z" fill="#FFFFFF" opacity="0.45"/>
+
+  <!-- 盆栽 -->
+  <g>
+    <rect x="95" y="418" width="66" height="58" rx="10" fill="#C96F2E"/>
+    <path d="M128 418 C 96 380 96 332 128 302 C 160 332 160 380 128 418 Z" fill="#7BAE7F"/>
+    <path d="M128 418 C 104 388 104 350 128 328 C 152 350 152 388 128 418 Z" fill="#5E9463"/>
+  </g>
+
+  <!-- 坐墊 -->
+  <ellipse cx="440" cy="478" rx="235" ry="38" fill="#F1C9A0"/>
+
+  <!-- 貓咪捲成一團睡覺 -->
+  <g>
+    <!-- 尾巴 -->
+    <path d="M566 432 C 646 434 664 358 612 328 C 582 310 560 338 580 358"
+          fill="none" stroke="#3E2F25" stroke-width="24" stroke-linecap="round"/>
+    <!-- 身體 -->
+    <ellipse cx="478" cy="422" rx="142" ry="78" fill="#3E2F25"/>
+    <ellipse cx="466" cy="440" rx="92" ry="42" fill="#5B4636"/>
+    <!-- 頭 -->
+    <circle cx="366" cy="382" r="68" fill="#3E2F25"/>
+    <!-- 耳朵 -->
+    <path d="M320 338 L308 300 L346 324 Z" fill="#3E2F25"/>
+    <path d="M406 338 L424 298 L436 332 Z" fill="#3E2F25"/>
+    <path d="M322 333 L315 308 L338 322 Z" fill="#C96F2E"/>
+    <path d="M403 333 L417 306 L425 326 Z" fill="#C96F2E"/>
+    <!-- 瞇眼睡覺 -->
+    <path d="M336 380 q10 8 20 0" stroke="#FFF7EE" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <path d="M378 380 q10 8 20 0" stroke="#FFF7EE" stroke-width="3" fill="none" stroke-linecap="round"/>
+    <!-- 鼻嘴 -->
+    <path d="M364 398 q2 3 4 0" stroke="#F1C9A0" stroke-width="2.2" fill="none" stroke-linecap="round"/>
+    <path d="M362 401 q4 6 8 0" stroke="#FFF7EE" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+    <!-- 鬍鬚 -->
+    <path d="M306 390 h-30M306 398 h-30M426 390 h30M426 398 h30" stroke="#8A7A6D" stroke-width="1.5" stroke-linecap="round"/>
+  </g>
+
+  <!-- 毛線球 -->
+  <g>
+    <circle cx="632" cy="480" r="25" fill="#E8853D"/>
+    <path d="M613 468 q19 8 38 0M611 480 h42M613 492 q19 -8 38 0" stroke="#C96F2E" stroke-width="2" fill="none"/>
+  </g>
+
+  <!-- 爪印點綴 -->
+  <g fill="#F1C9A0" opacity="0.8">
+    <ellipse cx="205" cy="120" rx="7" ry="9"/>
+    <ellipse cx="188" cy="105" rx="3.4" ry="4.4"/>
+    <ellipse cx="203" cy="100" rx="3.4" ry="4.4"/>
+    <ellipse cx="218" cy="105" rx="3.4" ry="4.4"/>
+  </g>
+</svg>

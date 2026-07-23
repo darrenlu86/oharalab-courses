@@ -1,0 +1,30 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img">
+  <title>羽毛逗貓棒插圖</title>
+  <rect width="400" height="300" fill="#F3E7D8"/>
+
+  <!-- 逗貓棒桿身 -->
+  <path d="M120 250 L268 96" stroke="#C96F2E" stroke-width="8" stroke-linecap="round"/>
+  <path d="M112 258 L134 236" stroke="#8A7A6D" stroke-width="10" stroke-linecap="round"/>
+
+  <!-- 綁線 -->
+  <path d="M268 96 Q286 110 278 128" stroke="#3E2F25" stroke-width="2" fill="none"/>
+
+  <!-- 三根羽毛 -->
+  <g>
+    <path d="M278 128 C 300 96 300 60 278 40 C 270 70 268 100 278 128 Z" fill="#7FB0A6"/>
+    <path d="M278 128 C 250 104 236 72 246 44 C 264 62 276 94 278 128 Z" fill="#E8853D"/>
+    <path d="M278 128 C 310 108 326 78 320 50 C 300 66 284 96 278 128 Z" fill="#F2A74E"/>
+  </g>
+  <circle cx="278" cy="128" r="6" fill="#3E2F25"/>
+
+  <!-- 貓掌撲上來 -->
+  <g fill="#3E2F25">
+    <ellipse cx="150" cy="238" rx="26" ry="20" transform="rotate(-18 150 238)"/>
+    <ellipse cx="134" cy="222" rx="8" ry="10" transform="rotate(-25 134 222)"/>
+    <ellipse cx="150" cy="214" rx="8" ry="10" transform="rotate(-10 150 214)"/>
+    <ellipse cx="168" cy="216" rx="8" ry="10" transform="rotate(5 168 216)"/>
+  </g>
+
+  <!-- 動態線 -->
+  <path d="M300 40 q14 -6 24 4M310 60 q16 -2 26 8" stroke="#E8853D" stroke-width="2.4" fill="none" stroke-linecap="round"/>
+</svg>

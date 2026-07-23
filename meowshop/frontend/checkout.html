@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>結帳｜喵喵商店 MeowShop</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <div id="navbar-root"></div>
+
+  <main>
+    <section class="page-section">
+      <div class="container">
+        <h2 class="section-title">結帳</h2>
+
+        <!-- 醒目警示：這是教學專案，付款是假的 -->
+        <div class="checkout-warning" id="checkout-warning-slot"></div>
+
+        <!-- 內容由 checkout.js 依「一般結帳」或「?order_id=N 只走付款」兩種模式產生 -->
+        <div id="checkout-root">
+          <p class="loading-text">載入中...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-root"></div>
+
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/pages/checkout.js"></script>
+</body>
+</html>

@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>喵喵商店 MeowShop｜毛孩的好日子，從喵喵商店開始</title>
+  <meta name="description" content="喵喵商店——貓糧、零食、玩具、貓砂、生活用品，懂貓的店主幫你家毛孩挑好貨。">
+  <!-- Google Fonts：有網路時用 Noto Sans TC / Nunito，斷網時 CSS 內建完整 fallback 字體，畫面不會壞 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@700;800&family=Noto+Sans+TC:wght@400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/logo.svg" type="image/svg+xml">
+</head>
+<body>
+  <!-- navbar / footer 由 js/ui.js 注入，全站共用同一份，不用每頁複製貼上 -->
+  <div id="navbar-root"></div>
+
+  <main>
+    <!-- Hero：主標語 + CTA + 插畫 -->
+    <section class="hero">
+      <div class="container hero-inner">
+        <div class="hero-text">
+          <h1 class="hero-title">毛孩的好日子，<br>從<em>喵喵商店</em>開始</h1>
+          <p class="hero-subtitle">
+            貓糧、零食、玩具、貓砂、生活用品，每一樣我們都先讓自己家的貓試用過，
+            看牠願意翻肚打滾才敢上架賣給你。
+          </p>
+          <a href="products.html" class="btn btn-primary btn-lg">逛逛商品</a>
+        </div>
+        <div class="hero-image">
+          <img src="images/hero-cat.svg" alt="一隻慵懶的貓咪窩在陽光灑落的窗邊插畫">
+        </div>
+      </div>
+    </section>
+
+    <!-- 分類入口：連結到 products.html?category=xxx，由 home.js 依 5 個固定分類產生 -->
+    <section class="page-section">
+      <div class="container">
+        <h2 class="section-title">找找看你家毛孩需要什麼</h2>
+        <div class="category-grid" id="category-grid">
+          <p class="loading-text">分類載入中...</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 精選商品：實際打 /api/products 撈資料，不寫死任何商品 -->
+    <section class="page-section">
+      <div class="container">
+        <h2 class="section-title">精選商品 <span class="hint">store pick</span></h2>
+        <div class="product-grid" id="featured-grid">
+          <p class="loading-text">商品載入中...</p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <div id="footer-root"></div>
+
+  <!-- script 載入順序固定：api.js → auth.js → ui.js → 該頁專屬的 pages/*.js -->
+  <script src="js/api.js"></script>
+  <script src="js/auth.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/pages/home.js"></script>
+</body>
+</html>

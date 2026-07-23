@@ -1,0 +1,42 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 300" role="img">
+  <title>低粉塵貓砂插圖</title>
+  <rect width="400" height="300" fill="#E6EEF2"/>
+
+  <!-- 貓砂盆 -->
+  <path d="M110 190 H290 L272 236 Q200 250 128 236 Z" fill="#FFFFFF" stroke="#A9C4D9" stroke-width="3"/>
+
+  <!-- 砂粒堆 -->
+  <g fill="#D9E4EA">
+    <ellipse cx="200" cy="188" rx="86" ry="20"/>
+  </g>
+  <g fill="#A9C4D9">
+    <circle cx="160" cy="184" r="3.4"/>
+    <circle cx="176" cy="192" r="3"/>
+    <circle cx="196" cy="182" r="3.6"/>
+    <circle cx="216" cy="190" r="3"/>
+    <circle cx="234" cy="184" r="3.4"/>
+    <circle cx="184" cy="196" r="2.6"/>
+  </g>
+
+  <!-- 貓掌爪印在砂上 -->
+  <g fill="#8A7A6D" opacity="0.75">
+    <ellipse cx="200" cy="184" rx="7" ry="8.6"/>
+    <ellipse cx="188" cy="172" rx="3.4" ry="4.4"/>
+    <ellipse cx="200" cy="168" rx="3.4" ry="4.4"/>
+    <ellipse cx="212" cy="172" rx="3.4" ry="4.4"/>
+  </g>
+
+  <!-- 鏟子 -->
+  <g>
+    <path d="M270 150 L320 96" stroke="#C96F2E" stroke-width="8" stroke-linecap="round"/>
+    <path d="M244 176 Q244 140 276 140 Q308 140 308 176 Q308 194 276 200 Q244 194 244 176 Z" fill="#E8853D"/>
+    <path d="M250 172 h52 M254 182 h44" stroke="#C96F2E" stroke-width="2"/>
+  </g>
+
+  <!-- 低粉塵示意：淡淡飄散小點被劃掉 -->
+  <g fill="#A9C4D9" opacity="0.5">
+    <circle cx="90" cy="90" r="3"/>
+    <circle cx="104" cy="106" r="2.4"/>
+    <circle cx="80" cy="112" r="2"/>
+  </g>
+</svg>
