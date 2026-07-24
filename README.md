@@ -16,7 +16,7 @@
 ## 使用方式
 
 ```bash
-git clone https://github.com/darrenlu86/ai-web-courses.git
+git clone https://github.com/darrenlu86/oharalab-courses.git
 cd ai-web-courses/<教案資料夾>
 ```
 
